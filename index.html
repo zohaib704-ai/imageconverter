@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImageResizer Pro | Free Online Image Size & Resolution Tool</title>
+    <meta name="description" content="Free online image resizer tool. Convert images from MB to KB, adjust resolution, and optimize for web use. No registration required.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo h1 {
+            color: #2563eb;
+            font-size: 1.5rem;
+        }
+
+        .nav-links a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Upload Area */
+        .upload-area {
+            background: rgba(255,255,255,0.1);
+            border: 2px dashed rgba(255,255,255,0.3);
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .upload-area.dragover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.8);
+        }
+
+        .upload-content {
+            text-align: center;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .browse-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .browse-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Tools Section */
+        .tools-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tool-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .tool-card h3 {
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        .form-group input[type="range"] {
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .process-btn {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .process-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .process-btn:not(:disabled):hover {
+            background: #1d4ed8;
+        }
+
+        /* Results Section */
+        .results-section {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .result-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .image-container {
+            max-width: 100%;
+            margin: 1rem 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+        }
+
+        .image-info {
+            margin: 1rem 0;
+        }
+
+        .image-info p {
+            margin: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .download-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: #059669;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-card h3 {
+            margin: 1rem 0;
+            color: #1f2937;
+        }
+
+        /* How to Use Section */
+        .how-to-use {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+
+        .how-to-use h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .step {
+            padding: 2rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #2563eb;
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Ad Section */
+        .ad-section {
+            padding: 40px 0;
+            background: white;
+        }
+
+        .ad-unit {
+            max-width: 728px;
+            margin: 0 auto;
+            text-align: center;
+            background: #f3f4f6;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .ad-placeholder {
+            background: #e5e7eb;
+            padding: 90px 20px;
+            border-radius: 4px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .upload-area {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress {
+            height: 100%;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>ImageResizer Pro</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#how-to-use">How to Use</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <h2>Free Image Resizer & MB to KB Converter</h2>
+                <p>Resize, compress, and optimize your images online for free. No watermarks, no registration.</p>
+                
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <div class="upload-icon">📁</div>
+                        <h3>Drop your image here or click to browse</h3>
+                        <p>Supports JPG, PNG, GIF, WEBP (Max 10MB)</p>
+                        <input type="file" id="fileInput" accept="image/*" hidden>
+                        <button class="browse-btn" onclick="document.getElementById('fileInput').click()">
+                            Browse Files
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-section">
+            <div class="container">
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <h3>Compression Settings</h3>
+                        <div class="form-group">
+                            <label for="quality">Image Quality:</label>
+                            <input type="range" id="quality" min="10" max="100" value="80">
+                            <span id="qualityValue">80%</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="targetSize">Target Size:</label>
+                            <input type="range" id="targetSize" min="50" max="2000" value="500">
+                            <span id="targetSizeValue">500 KB</span>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <h3>Resolution Settings</h3>
+                        <div class="form-group">
+                            <label for="width">Width (px):</label>
+                            <input type="number" id="width" placeholder="Auto">
+                        </div>
+                        <div class="form-group">
+                            <label for="height">Height (px):</label>
+                            <input type="number" id="height" placeholder="Auto">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="maintainAspect" checked>
+                                Maintain Aspect Ratio
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <h3>Format & Output</h3>
+                        <div class="form-group">
+                            <label for="format">Output Format:</label>
+                            <select id="format">
+                                <option value="original">Original Format</option>
+                                <option value="jpeg">JPEG</option>
+                                <option value="png">PNG</option>
+                                <option value="webp">WEBP</option>
+                            </select>
+                        </div>
+                        <button class="process-btn" id="processBtn" disabled>
+                            Process Image
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-section" id="results" style="display: none;">
+            <div class="container">
+                <h2>Results</h2>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Original Image</h3>
+                        <div class="image-container">
+                            <img id="originalImage" alt="Original image">
+                        </div>
+                        <div class="image-info">
+                            <p>Size: <span id="originalSize">-</span></p>
+                            <p>Dimensions: <span id="originalDimensions">-</span></p>
+                        </div>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>Resized Image</h3>
+                        <div class="image-container">
+                            <img id="resizedImage" alt="Resized image">
+                        </div>
+                        <div class="image-info">
+                            <p>Size: <span id="resizedSize">-</span></p>
+                            <p>Dimensions: <span id="resizedDimensions">-</span></p>
+                            <p>Reduction: <span id="reductionPercent">-</span></p>
+                        </div>
+                        <button class="download-btn" id="downloadBtn">
+                            Download Image
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AdSense Ad Unit -->
+        <section class="ad-section">
+            <div class="container">
+                <div class="ad-unit">
+                    <!-- Google AdSense Code - Replace with your actual code -->
+                    <!--
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                         data-ad-slot="XXXXXXXXXX"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                    -->
+                    <div class="ad-placeholder">
+                        AdSense Advertisement
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="container">
+                <h2>Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>📏 MB to KB Conversion</h3>
+                        <p>Reduce large image files from megabytes to kilobytes while maintaining quality</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚙️ Resolution Control</h3>
+                        <p>Adjust width and height with aspect ratio preservation</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎯 Quality Optimization</h3>
+                        <p>Fine-tune compression level to balance quality and file size</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔒 Privacy First</h3>
+                        <p>All processing happens in your browser - no server uploads</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-to-use" id="how-to-use">
+            <div class="container">
+                <h2>How to Use</h2>
+                <div class="steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <h3>Upload Image</h3>
+                        <p>Drag and drop or click to select your image file</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <h3>Adjust Settings</h3>
+                        <p>Set target size, resolution, and quality preferences</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <h3>Process & Download</h3>
+                        <p>Click process and download your optimized image</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 ImageResizer Pro. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        class ImageResizer {
+            constructor() {
+                this.originalImage = null;
+                this.originalFile = null;
+                this.resizedBlob = null;
+                this.initializeEventListeners();
+            }
+
+            initializeEventListeners() {
+                const fileInput = document.getElementById('fileInput');
+                const uploadArea = document.getElementById('uploadArea');
+                const processBtn = document.getElementById('processBtn');
+                const downloadBtn = document.getElementById('downloadBtn');
+
+                // File input change
+                fileInput.addEventListener('change', (e) => this.handleFileSelect(e));
+
+                // Drag and drop
+                uploadArea.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    uploadArea.classList.add('dragover');
+                });
+
+                uploadArea.addEventListener('dragleave', () => {
+                    uploadArea.classList.remove('dragover');
+                });
+
+                uploadArea.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    uploadArea.classList.remove('dragover');
+                    this.handleFileSelect(e);
+                });
+
+                // Click upload area
+                uploadArea.addEventListener('click', () => {
+                    fileInput.click();
+                });
+
+                // Process button
+                processBtn.addEventListener('click', () => this.processImage());
+
+                // Download button
+                downloadBtn.addEventListener('click', () => this.downloadImage());
+
+                // Real-time updates for sliders
+                document.getElementById('quality').addEventListener('input', (e) => {
+                    document.getElementById('qualityValue').textContent = e.target.value + '%';
+                });
+
+                document.getElementById('targetSize').addEventListener('input', (e) => {
+                    document.getElementById('targetSizeValue').textContent = e.target.value + ' KB';
+                });
+
+                // Maintain aspect ratio
+                document.getElementById('width').addEventListener('input', (e) => {
+                    if (document.getElementById('maintainAspect').checked && this.originalImage) {
+                        const ratio = this.originalImage.height / this.originalImage.width;
+                        document.getElementById('height').value = Math.round(e.target.value * ratio);
+                    }
+                });
+
+                document.getElementById('height').addEventListener('input', (e) => {
+                    if (document.getElementById('maintainAspect').checked && this.originalImage) {
+                        const ratio = this.originalImage.width / this.originalImage.height;
+                        document.getElementById('width').value = Math.round(e.target.value * ratio);
+                    }
+                });
+            }
+
+            handleFileSelect(event) {
+                const file = event.target.files?.[0] || event.dataTransfer?.files[0];
+                
+                if (!file) return;
+
+                // Validate file type
+                if (!file.type.startsWith('image/')) {
+                    alert('Please select a valid image file.');
+                    return;
+                }
+
+                // Validate file size (10MB limit)
+                if (file.size > 10 * 1024 * 1024) {
+                    alert('File size must be less than 10MB.');
+                    return;
+                }
+
+                this.originalFile = file;
+                this.loadImage(file);
+            }
+
+            loadImage(file) {
+                const reader = new FileReader();
+                
+                reader.onload = (e) => {
+                    this.originalImage = new Image();
+                    this.originalImage.onload = () => {
+                        this.displayOriginalImage();
+                        this.enableProcessButton();
+                        this.setDefaultDimensions();
+                    };
+                    this.originalImage.src = e.target.result;
+                };
+
+                reader.readAsDataURL(file);
+            }
+
+            displayOriginalImage() {
+                const originalImage = document.getElementById('originalImage');
+                const originalSize = document.getElementById('originalSize');
+                const originalDimensions = document.getElementById('originalDimensions');
+
+                originalImage.src = this.originalImage.src;
+                originalSize.textContent = this.formatFileSize(this.originalFile.size);
+                originalDimensions.textContent = `${this.originalImage.width} × ${this.originalImage.height}`;
+            }
+
+            enableProcessButton() {
+                document.getElementById('processBtn').disabled = false;
+            }
+
+            setDefaultDimensions() {
+                document.getElementById('width').value = this.originalImage.width;
+                document.getElementById('height').value = this.originalImage.height;
+            }
+
+            async processImage() {
+                if (!this.originalImage) return;
+
+                const processBtn = document.getElementById('processBtn');
+                processBtn.disabled = true;
+                processBtn.textContent = 'Processing...';
+
+                try {
+                    // Get user settings
+                    const quality = parseInt(document.getElementById('quality').value) / 100;
+                    const width = parseInt(document.getElementById('width').value) || this.originalImage.width;
+                    const height = parseInt(document.getElementById('height').value) || this.originalImage.height;
+                    const format = document.getElementById('format').value;
+                    const outputFormat = format === 'original' ? this.getFileExtension(this.originalFile.name) : format;
+
+                    // Create canvas for resizing
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    // Draw image on canvas
+                    ctx.drawImage(this.originalImage, 0, 0, width, height);
+
+                    // Convert to blob with quality settings
+                    const blob = await new Promise(resolve => {
+                        canvas.toBlob(resolve, `image/${outputFormat}`, quality);
+                    });
+
+                    this.displayResizedImage(blob, width, height);
+
+                } catch (error) {
+                    console.error('Error processing image:', error);
+                    alert('Error processing image. Please try again.');
+                } finally {
+                    processBtn.disabled = false;
+                    processBtn.textContent = 'Process Image';
+                }
+            }
+
+            displayResizedImage(blob, width, height) {
+                const resizedImage = document.getElementById('resizedImage');
+                const resizedSize = document.getElementById('resizedSize');
+                const resizedDimensions = document.getElementById('resizedDimensions');
+                const reductionPercent = document.getElementById('reductionPercent');
+                const resultsSection = document.getElementById('results');
+
+                const url = URL.createObjectURL(blob);
+                resizedImage.src = url;
+
+                resizedSize.textContent = this.formatFileSize(blob.size);
+                resizedDimensions.textContent = `${width} × ${height}`;
+
+                const originalSize = this.originalFile.size;
+                const reduction = ((originalSize - blob.size) / originalSize * 100).toFixed(1);
+                reductionPercent.textContent = `${reduction}% smaller`;
+
+                // Store blob for download
+                this.resizedBlob = blob;
+
+                // Show results section
+                resultsSection.style.display = 'block';
+                resultsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            downloadImage() {
+                if (!this.resizedBlob) return;
+
+                const link = document.createElement('a');
+                const format = document.getElementById('format').value;
+                const outputFormat = format === 'original' ? this.getFileExtension(this.originalFile.name) : format;
+                
+                link.download = `resized-image.${outputFormat}`;
+                link.href = URL.createObjectURL(this.resizedBlob);
+                link.click();
+                
+                URL.revokeObjectURL(link.href);
+            }
+
+            formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            getFileExtension(filename) {
+                return filename.slice((filename.lastIndexOf('.') - 1 >>> 0) + 2);
+            }
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            new ImageResizer();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
