@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImageResizer Pro | Free Online Image Size & Resolution Tool</title>
-    <meta name="description" content="Free online image resizer tool. Convert images from MB to KB, adjust resolution, and optimize for web use. No registration required.">
+    <title>Free Image Resizer Tool - Convert MB to KB Online | ImageResizer Pro</title>
+    <meta name="description" content="Free online image resizer tool. Reduce image file size from MB to KB, adjust resolution, compress and optimize images for web. No registration required. 100% free.">
+    <!-- Add missing SEO tags -->
+    <meta name="keywords" content="image resizer, compress images, reduce image size, mb to kb, image optimizer, free image tool">
+    <meta name="author" content="ImageResizer Pro">
+    <link rel="canonical" href="https://yoursite.com/image-resizer">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "ImageResizer Pro",
+        "description": "Free online image resizer tool to convert images from MB to KB",
+        "url": "https://yoursite.com/image-resizer",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #10b981;
+            --error-color: #ef4444;
+            --warning-color: #f59e0b;
+            --text-dark: #1f2937;
+            --text-gray: #6b7280;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -13,10 +49,10 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
         }
 
         .container {
@@ -25,9 +61,9 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* Header & Navigation */
         header {
-            background: white;
+            background: var(--white);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
@@ -43,19 +79,24 @@
         }
 
         .logo h1 {
-            color: #2563eb;
+            color: var(--primary-color);
             font-size: 1.5rem;
         }
 
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
         .nav-links a {
-            margin-left: 2rem;
             text-decoration: none;
-            color: #4b5563;
+            color: var(--text-gray);
             font-weight: 500;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #2563eb;
+            color: var(--primary-color);
         }
 
         /* Hero Section */
@@ -63,10 +104,10 @@
             padding: 120px 0 60px;
             text-align: center;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            color: var(--white);
         }
 
-        .hero h2 {
+        .hero h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
@@ -110,25 +151,33 @@
         }
 
         .browse-btn {
-            background: white;
-            color: #667eea;
+            background: var(--white);
+            color: var(--primary-color);
             border: none;
             padding: 12px 30px;
             border-radius: 25px;
             font-weight: 600;
             cursor: pointer;
             margin-top: 1rem;
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .browse-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         /* Tools Section */
         .tools-section {
             padding: 60px 0;
-            background: white;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
         }
 
         .tools-grid {
@@ -139,15 +188,20 @@
         }
 
         .tool-card {
-            background: #f8f9fa;
+            background: var(--bg-light);
             padding: 2rem;
             border-radius: 10px;
-            border: 1px solid #e5e7eb;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-2px);
         }
 
         .tool-card h3 {
             margin-bottom: 1.5rem;
-            color: #1f2937;
+            color: var(--text-dark);
         }
 
         .form-group {
@@ -158,7 +212,7 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
-            color: #4b5563;
+            color: var(--text-dark);
         }
 
         .form-group input[type="range"] {
@@ -170,37 +224,65 @@
         .form-group select {
             width: 100%;
             padding: 10px;
-            border: 1px solid #d1d5db;
+            border: 1px solid var(--border-color);
             border-radius: 5px;
             font-size: 1rem;
         }
 
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .preset-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .preset-btn {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            background: var(--white);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .preset-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
         .process-btn {
             width: 100%;
-            background: #2563eb;
-            color: white;
+            background: var(--primary-color);
+            color: var(--white);
             border: none;
             padding: 15px;
             border-radius: 8px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .process-btn:disabled {
-            background: #9ca3af;
+            background: var(--text-gray);
             cursor: not-allowed;
         }
 
         .process-btn:not(:disabled):hover {
-            background: #1d4ed8;
+            background: var(--primary-dark);
+            transform: translateY(-2px);
         }
 
         /* Results Section */
         .results-section {
             padding: 60px 0;
-            background: #f8f9fa;
+            background: var(--bg-light);
         }
 
         .results-grid {
@@ -211,7 +293,7 @@
         }
 
         .result-card {
-            background: white;
+            background: var(--white);
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -221,12 +303,15 @@
         .image-container {
             max-width: 100%;
             margin: 1rem 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
         }
 
         .image-container img {
             max-width: 100%;
-            max-height: 300px;
-            border-radius: 8px;
+            max-height: 250px;
+            border-radius: 4px;
         }
 
         .image-info {
@@ -238,30 +323,85 @@
             font-weight: 500;
         }
 
+        .reduction {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .increase {
+            color: var(--error-color);
+            font-weight: bold;
+        }
+
         .download-btn {
-            background: #10b981;
-            color: white;
+            background: var(--secondary-color);
+            color: var(--white);
             border: none;
             padding: 12px 30px;
             border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
+            width: 100%;
         }
 
         .download-btn:hover {
             background: #059669;
+            transform: translateY(-2px);
+        }
+
+        /* Loading & Status */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--border-color);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--primary-color);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .status-message {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: var(--error-color);
+        }
+
+        .success {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: var(--secondary-color);
+        }
+
+        .warning {
+            background: #fffbeb;
+            border: 1px solid #fed7aa;
+            color: var(--warning-color);
         }
 
         /* Features Section */
         .features {
             padding: 60px 0;
-            background: white;
-        }
-
-        .features h2 {
-            text-align: center;
-            margin-bottom: 3rem;
+            background: var(--white);
         }
 
         .features-grid {
@@ -273,75 +413,19 @@
         .feature-card {
             text-align: center;
             padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 10px;
         }
 
         .feature-card h3 {
             margin: 1rem 0;
-            color: #1f2937;
-        }
-
-        /* How to Use Section */
-        .how-to-use {
-            padding: 60px 0;
-            background: #f8f9fa;
-        }
-
-        .how-to-use h2 {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .step {
-            padding: 2rem;
-        }
-
-        .step-number {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: #2563eb;
-            color: white;
-            border-radius: 50%;
-            line-height: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        /* Ad Section */
-        .ad-section {
-            padding: 40px 0;
-            background: white;
-        }
-
-        .ad-unit {
-            max-width: 728px;
-            margin: 0 auto;
-            text-align: center;
-            background: #f3f4f6;
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        .ad-placeholder {
-            background: #e5e7eb;
-            padding: 90px 20px;
-            border-radius: 4px;
-            color: #6b7280;
-            font-weight: 500;
+            color: var(--text-dark);
         }
 
         /* Footer */
         footer {
             background: #1f2937;
-            color: white;
+            color: var(--white);
             padding: 2rem 0;
             text-align: center;
         }
@@ -357,12 +441,12 @@
         }
 
         .footer-links a:hover {
-            color: white;
+            color: var(--white);
         }
 
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero h2 {
+            .hero h1 {
                 font-size: 2rem;
             }
             
@@ -377,27 +461,34 @@
             .upload-area {
                 padding: 2rem 1rem;
             }
+            
+            .preset-buttons {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* Loading Animation */
-        .loading {
-            opacity: 0.6;
-            pointer-events: none;
+        /* AdSense Placeholder */
+        .ad-section {
+            padding: 40px 0;
+            background: var(--bg-light);
         }
 
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background: #e5e7eb;
-            border-radius: 2px;
-            overflow: hidden;
-            margin: 1rem 0;
+        .ad-unit {
+            max-width: 728px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
         }
 
-        .progress {
-            height: 100%;
-            background: #2563eb;
-            transition: width 0.3s ease;
+        .ad-placeholder {
+            background: #f3f4f6;
+            padding: 90px 20px;
+            border-radius: 4px;
+            color: var(--text-gray);
+            font-weight: 500;
         }
     </style>
 </head>
@@ -409,8 +500,8 @@
             </div>
             <div class="nav-links">
                 <a href="#home">Home</a>
+                <a href="#tools">Tools</a>
                 <a href="#features">Features</a>
-                <a href="#how-to-use">How to Use</a>
             </div>
         </nav>
     </header>
@@ -418,42 +509,53 @@
     <main>
         <section class="hero" id="home">
             <div class="container">
-                <h2>Free Image Resizer & MB to KB Converter</h2>
-                <p>Resize, compress, and optimize your images online for free. No watermarks, no registration.</p>
+                <h1>Free Image Resizer & MB to KB Converter</h1>
+                <p>Reduce image file sizes, adjust resolution, and optimize for web - 100% free</p>
                 
                 <div class="upload-area" id="uploadArea">
                     <div class="upload-content">
-                        <div class="upload-icon">📁</div>
+                        <div class="upload-icon">🖼️</div>
                         <h3>Drop your image here or click to browse</h3>
                         <p>Supports JPG, PNG, GIF, WEBP (Max 10MB)</p>
                         <input type="file" id="fileInput" accept="image/*" hidden>
                         <button class="browse-btn" onclick="document.getElementById('fileInput').click()">
-                            Browse Files
+                            Choose Image File
                         </button>
+                    </div>
+                </div>
+
+                <div class="status-message error" id="errorMessage" style="display: none;"></div>
+                <div class="status-message success" id="successMessage" style="display: none;"></div>
+
+                <div class="loading" id="loading">
+                    <p>Compressing your image...</p>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="tools-section">
+        <section class="tools-section" id="tools">
             <div class="container">
+                <h2 class="section-title">Compression Settings</h2>
                 <div class="tools-grid">
                     <div class="tool-card">
-                        <h3>Compression Settings</h3>
+                        <h3>Quality & Size</h3>
                         <div class="form-group">
-                            <label for="quality">Image Quality:</label>
+                            <label for="quality">Quality: <span id="qualityValue">80%</span></label>
                             <input type="range" id="quality" min="10" max="100" value="80">
-                            <span id="qualityValue">80%</span>
+                            <small>Lower quality = smaller file size</small>
                         </div>
                         <div class="form-group">
-                            <label for="targetSize">Target Size:</label>
-                            <input type="range" id="targetSize" min="50" max="2000" value="500">
-                            <span id="targetSizeValue">500 KB</span>
+                            <label for="maxSize">Max Size: <span id="maxSizeValue">500 KB</span></label>
+                            <input type="range" id="maxSize" min="50" max="2000" value="500">
+                            <small>Target maximum file size</small>
                         </div>
                     </div>
 
                     <div class="tool-card">
-                        <h3>Resolution Settings</h3>
+                        <h3>Dimensions</h3>
                         <div class="form-group">
                             <label for="width">Width (px):</label>
                             <input type="number" id="width" placeholder="Auto">
@@ -463,26 +565,38 @@
                             <input type="number" id="height" placeholder="Auto">
                         </div>
                         <div class="form-group">
-                            <label>
+                            <div class="checkbox-group">
                                 <input type="checkbox" id="maintainAspect" checked>
-                                Maintain Aspect Ratio
-                            </label>
+                                <label for="maintainAspect">Maintain Aspect Ratio</label>
+                            </div>
+                        </div>
+                        <div class="preset-buttons">
+                            <button class="preset-btn" data-scale="0.25">25%</button>
+                            <button class="preset-btn" data-scale="0.5">50%</button>
+                            <button class="preset-btn" data-scale="0.75">75%</button>
+                            <button class="preset-btn" data-scale="1">100%</button>
                         </div>
                     </div>
 
                     <div class="tool-card">
-                        <h3>Format & Output</h3>
+                        <h3>Output Settings</h3>
                         <div class="form-group">
                             <label for="format">Output Format:</label>
                             <select id="format">
-                                <option value="original">Original Format</option>
-                                <option value="jpeg">JPEG</option>
-                                <option value="png">PNG</option>
-                                <option value="webp">WEBP</option>
+                                <option value="jpeg">JPEG (Best compression)</option>
+                                <option value="webp">WEBP (Modern format)</option>
+                                <option value="png">PNG (Lossless)</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label>Quick Presets:</label>
+                            <div class="preset-buttons">
+                                <button class="preset-btn" data-preset="web">Web Optimized</button>
+                                <button class="preset-btn" data-preset="social">Social Media</button>
+                            </div>
+                        </div>
                         <button class="process-btn" id="processBtn" disabled>
-                            Process Image
+                            Compress Image
                         </button>
                     </div>
                 </div>
@@ -491,7 +605,7 @@
 
         <section class="results-section" id="results" style="display: none;">
             <div class="container">
-                <h2>Results</h2>
+                <h2 class="section-title">Compression Results</h2>
                 <div class="results-grid">
                     <div class="result-card">
                         <h3>Original Image</h3>
@@ -501,43 +615,35 @@
                         <div class="image-info">
                             <p>Size: <span id="originalSize">-</span></p>
                             <p>Dimensions: <span id="originalDimensions">-</span></p>
+                            <p>Format: <span id="originalFormat">-</span></p>
                         </div>
                     </div>
 
                     <div class="result-card">
-                        <h3>Resized Image</h3>
+                        <h3>Compressed Image</h3>
                         <div class="image-container">
-                            <img id="resizedImage" alt="Resized image">
+                            <img id="compressedImage" alt="Compressed image">
                         </div>
                         <div class="image-info">
-                            <p>Size: <span id="resizedSize">-</span></p>
-                            <p>Dimensions: <span id="resizedDimensions">-</span></p>
+                            <p>Size: <span id="compressedSize">-</span></p>
+                            <p>Dimensions: <span id="compressedDimensions">-</span></p>
+                            <p>Format: <span id="compressedFormat">-</span></p>
                             <p>Reduction: <span id="reductionPercent">-</span></p>
+                            <p>Quality: <span id="actualQuality">-</span></p>
                         </div>
                         <button class="download-btn" id="downloadBtn">
-                            Download Image
+                            Download Compressed Image
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- AdSense Ad Unit -->
+        <!-- AdSense Section -->
         <section class="ad-section">
             <div class="container">
                 <div class="ad-unit">
-                    <!-- Google AdSense Code - Replace with your actual code -->
-                    <!--
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                         data-ad-slot="XXXXXXXXXX"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    <script>
-                         (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                    -->
+                    <!-- Replace with actual AdSense code -->
                     <div class="ad-placeholder">
                         AdSense Advertisement
                     </div>
@@ -547,46 +653,23 @@
 
         <section class="features" id="features">
             <div class="container">
-                <h2>Key Features</h2>
+                <h2 class="section-title">Why Use Our Image Resizer?</h2>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <h3>📏 MB to KB Conversion</h3>
-                        <p>Reduce large image files from megabytes to kilobytes while maintaining quality</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>⚙️ Resolution Control</h3>
-                        <p>Adjust width and height with aspect ratio preservation</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>🎯 Quality Optimization</h3>
-                        <p>Fine-tune compression level to balance quality and file size</p>
+                        <h3>⚡ Fast Processing</h3>
+                        <p>Compress images in seconds with our optimized algorithms</p>
                     </div>
                     <div class="feature-card">
                         <h3>🔒 Privacy First</h3>
                         <p>All processing happens in your browser - no server uploads</p>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="how-to-use" id="how-to-use">
-            <div class="container">
-                <h2>How to Use</h2>
-                <div class="steps">
-                    <div class="step">
-                        <span class="step-number">1</span>
-                        <h3>Upload Image</h3>
-                        <p>Drag and drop or click to select your image file</p>
+                    <div class="feature-card">
+                        <h3>🎯 Accurate Results</h3>
+                        <p>Real compression with honest file size reductions</p>
                     </div>
-                    <div class="step">
-                        <span class="step-number">2</span>
-                        <h3>Adjust Settings</h3>
-                        <p>Set target size, resolution, and quality preferences</p>
-                    </div>
-                    <div class="step">
-                        <span class="step-number">3</span>
-                        <h3>Process & Download</h3>
-                        <p>Click process and download your optimized image</p>
+                    <div class="feature-card">
+                        <h3>💯 Free Forever</h3>
+                        <p>No watermarks, no registration, no hidden costs</p>
                     </div>
                 </div>
             </div>
@@ -605,11 +688,11 @@
     </footer>
 
     <script>
-        class ImageResizer {
+        class CompleteImageResizer {
             constructor() {
                 this.originalImage = null;
                 this.originalFile = null;
-                this.resizedBlob = null;
+                this.compressedBlob = null;
                 this.initializeEventListeners();
             }
 
@@ -619,46 +702,39 @@
                 const processBtn = document.getElementById('processBtn');
                 const downloadBtn = document.getElementById('downloadBtn');
 
-                // File input change
+                // File handling
                 fileInput.addEventListener('change', (e) => this.handleFileSelect(e));
-
+                uploadArea.addEventListener('click', () => fileInput.click());
+                
                 // Drag and drop
-                uploadArea.addEventListener('dragover', (e) => {
-                    e.preventDefault();
-                    uploadArea.classList.add('dragover');
+                ['dragover', 'dragleave', 'drop'].forEach(event => {
+                    uploadArea.addEventListener(event, (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    });
                 });
 
-                uploadArea.addEventListener('dragleave', () => {
-                    uploadArea.classList.remove('dragover');
-                });
-
+                uploadArea.addEventListener('dragover', () => uploadArea.classList.add('dragover'));
+                uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
                 uploadArea.addEventListener('drop', (e) => {
-                    e.preventDefault();
                     uploadArea.classList.remove('dragover');
                     this.handleFileSelect(e);
                 });
 
-                // Click upload area
-                uploadArea.addEventListener('click', () => {
-                    fileInput.click();
-                });
-
-                // Process button
-                processBtn.addEventListener('click', () => this.processImage());
-
-                // Download button
+                // Processing
+                processBtn.addEventListener('click', () => this.compressImage());
                 downloadBtn.addEventListener('click', () => this.downloadImage());
 
-                // Real-time updates for sliders
+                // Real-time updates
                 document.getElementById('quality').addEventListener('input', (e) => {
                     document.getElementById('qualityValue').textContent = e.target.value + '%';
                 });
 
-                document.getElementById('targetSize').addEventListener('input', (e) => {
-                    document.getElementById('targetSizeValue').textContent = e.target.value + ' KB';
+                document.getElementById('maxSize').addEventListener('input', (e) => {
+                    document.getElementById('maxSizeValue').textContent = e.target.value + ' KB';
                 });
 
-                // Maintain aspect ratio
+                // Dimension controls
                 document.getElementById('width').addEventListener('input', (e) => {
                     if (document.getElementById('maintainAspect').checked && this.originalImage) {
                         const ratio = this.originalImage.height / this.originalImage.width;
@@ -672,27 +748,87 @@
                         document.getElementById('width').value = Math.round(e.target.value * ratio);
                     }
                 });
+
+                // Preset buttons
+                document.querySelectorAll('.preset-btn[data-scale]').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const scale = parseFloat(e.target.dataset.scale);
+                        this.applyScalePreset(scale);
+                    });
+                });
+
+                document.querySelectorAll('.preset-btn[data-preset]').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const preset = e.target.dataset.preset;
+                        this.applyCompressionPreset(preset);
+                    });
+                });
+            }
+
+            applyScalePreset(scale) {
+                if (!this.originalImage) return;
+                
+                const width = Math.round(this.originalImage.width * scale);
+                const height = Math.round(this.originalImage.height * scale);
+                
+                document.getElementById('width').value = width;
+                document.getElementById('height').value = height;
+            }
+
+            applyCompressionPreset(preset) {
+                switch(preset) {
+                    case 'web':
+                        document.getElementById('quality').value = 75;
+                        document.getElementById('maxSize').value = 300;
+                        document.getElementById('format').value = 'jpeg';
+                        document.getElementById('qualityValue').textContent = '75%';
+                        document.getElementById('maxSizeValue').textContent = '300 KB';
+                        break;
+                    case 'social':
+                        document.getElementById('quality').value = 85;
+                        document.getElementById('maxSize').value = 500;
+                        document.getElementById('format').value = 'jpeg';
+                        document.getElementById('qualityValue').textContent = '85%';
+                        document.getElementById('maxSizeValue').textContent = '500 KB';
+                        break;
+                }
             }
 
             handleFileSelect(event) {
                 const file = event.target.files?.[0] || event.dataTransfer?.files[0];
-                
                 if (!file) return;
 
-                // Validate file type
+                this.hideMessages();
+
                 if (!file.type.startsWith('image/')) {
-                    alert('Please select a valid image file.');
+                    this.showError('Please select a valid image file (JPG, PNG, GIF, or WEBP).');
                     return;
                 }
 
-                // Validate file size (10MB limit)
                 if (file.size > 10 * 1024 * 1024) {
-                    alert('File size must be less than 10MB.');
+                    this.showError('File size must be less than 10MB.');
                     return;
                 }
 
                 this.originalFile = file;
                 this.loadImage(file);
+            }
+
+            showError(message) {
+                const errorElement = document.getElementById('errorMessage');
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+            }
+
+            showSuccess(message) {
+                const successElement = document.getElementById('successMessage');
+                successElement.textContent = message;
+                successElement.style.display = 'block';
+            }
+
+            hideMessages() {
+                document.getElementById('errorMessage').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'none';
             }
 
             loadImage(file) {
@@ -702,10 +838,18 @@
                     this.originalImage = new Image();
                     this.originalImage.onload = () => {
                         this.displayOriginalImage();
-                        this.enableProcessButton();
+                        document.getElementById('processBtn').disabled = false;
                         this.setDefaultDimensions();
+                        this.showSuccess('Image loaded successfully! Adjust settings and click "Compress Image".');
+                    };
+                    this.originalImage.onerror = () => {
+                        this.showError('Error loading image. Please try another file.');
                     };
                     this.originalImage.src = e.target.result;
+                };
+
+                reader.onerror = () => {
+                    this.showError('Error reading file. Please try again.');
                 };
 
                 reader.readAsDataURL(file);
@@ -715,96 +859,150 @@
                 const originalImage = document.getElementById('originalImage');
                 const originalSize = document.getElementById('originalSize');
                 const originalDimensions = document.getElementById('originalDimensions');
+                const originalFormat = document.getElementById('originalFormat');
 
                 originalImage.src = this.originalImage.src;
                 originalSize.textContent = this.formatFileSize(this.originalFile.size);
                 originalDimensions.textContent = `${this.originalImage.width} × ${this.originalImage.height}`;
-            }
-
-            enableProcessButton() {
-                document.getElementById('processBtn').disabled = false;
+                originalFormat.textContent = this.getFileExtension(this.originalFile.name).toUpperCase();
             }
 
             setDefaultDimensions() {
-                document.getElementById('width').value = this.originalImage.width;
-                document.getElementById('height').value = this.originalImage.height;
+                // Set to 50% of original for meaningful compression
+                const width = Math.round(this.originalImage.width * 0.5);
+                const height = Math.round(this.originalImage.height * 0.5);
+                
+                document.getElementById('width').value = width;
+                document.getElementById('height').value = height;
             }
 
-            async processImage() {
+            async compressImage() {
                 if (!this.originalImage) return;
 
                 const processBtn = document.getElementById('processBtn');
+                const loading = document.getElementById('loading');
+                const progress = document.getElementById('progress');
+
                 processBtn.disabled = true;
-                processBtn.textContent = 'Processing...';
+                loading.style.display = 'block';
+                this.hideMessages();
 
                 try {
-                    // Get user settings
-                    const quality = parseInt(document.getElementById('quality').value) / 100;
+                    const maxSizeKB = parseInt(document.getElementById('maxSize').value);
+                    const initialQuality = parseInt(document.getElementById('quality').value) / 100;
                     const width = parseInt(document.getElementById('width').value) || this.originalImage.width;
                     const height = parseInt(document.getElementById('height').value) || this.originalImage.height;
                     const format = document.getElementById('format').value;
-                    const outputFormat = format === 'original' ? this.getFileExtension(this.originalFile.name) : format;
 
-                    // Create canvas for resizing
+                    // Validate dimensions
+                    if (width < 10 || height < 10) {
+                        throw new Error('Dimensions too small. Minimum 10x10 pixels.');
+                    }
+
+                    if (width > 10000 || height > 10000) {
+                        throw new Error('Dimensions too large. Maximum 10000x10000 pixels.');
+                    }
+
+                    progress.style.width = '25%';
+
+                    // Start compression
+                    let quality = Math.min(initialQuality, 0.8);
+                    let blob = await this.compressToBlob(width, height, format, quality);
+                    
+                    progress.style.width = '50%';
+
+                    let currentSizeKB = blob.size / 1024;
+                    let attempts = 0;
+                    const maxAttempts = 6;
+
+                    // Progressive quality reduction
+                    while (currentSizeKB > maxSizeKB && attempts < maxAttempts && quality > 0.1) {
+                        quality = Math.max(0.1, quality * 0.7);
+                        blob = await this.compressToBlob(width, height, format, quality);
+                        currentSizeKB = blob.size / 1024;
+                        attempts++;
+                        progress.style.width = 50 + (attempts * 8) + '%';
+                    }
+
+                    progress.style.width = '90%';
+
+                    this.displayCompressedImage(blob, width, height, format, quality);
+                    progress.style.width = '100%';
+
+                } catch (error) {
+                    console.error('Compression error:', error);
+                    this.showError(error.message || 'Error compressing image. Please try different settings.');
+                } finally {
+                    processBtn.disabled = false;
+                    setTimeout(() => {
+                        loading.style.display = 'none';
+                        progress.style.width = '0%';
+                    }, 500);
+                }
+            }
+
+            async compressToBlob(width, height, format, quality) {
+                return new Promise((resolve) => {
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
                     
                     canvas.width = width;
                     canvas.height = height;
 
-                    // Draw image on canvas
+                    ctx.imageSmoothingEnabled = true;
+                    ctx.imageSmoothingQuality = 'high';
                     ctx.drawImage(this.originalImage, 0, 0, width, height);
 
-                    // Convert to blob with quality settings
-                    const blob = await new Promise(resolve => {
-                        canvas.toBlob(resolve, `image/${outputFormat}`, quality);
-                    });
-
-                    this.displayResizedImage(blob, width, height);
-
-                } catch (error) {
-                    console.error('Error processing image:', error);
-                    alert('Error processing image. Please try again.');
-                } finally {
-                    processBtn.disabled = false;
-                    processBtn.textContent = 'Process Image';
-                }
+                    canvas.toBlob(resolve, `image/${format}`, quality);
+                });
             }
 
-            displayResizedImage(blob, width, height) {
-                const resizedImage = document.getElementById('resizedImage');
-                const resizedSize = document.getElementById('resizedSize');
-                const resizedDimensions = document.getElementById('resizedDimensions');
+            displayCompressedImage(blob, width, height, format, quality) {
+                const compressedImage = document.getElementById('compressedImage');
+                const compressedSize = document.getElementById('compressedSize');
+                const compressedDimensions = document.getElementById('compressedDimensions');
+                const compressedFormat = document.getElementById('compressedFormat');
                 const reductionPercent = document.getElementById('reductionPercent');
+                const actualQuality = document.getElementById('actualQuality');
                 const resultsSection = document.getElementById('results');
 
                 const url = URL.createObjectURL(blob);
-                resizedImage.src = url;
+                compressedImage.src = url;
 
-                resizedSize.textContent = this.formatFileSize(blob.size);
-                resizedDimensions.textContent = `${width} × ${height}`;
+                const compressedSizeKB = blob.size / 1024;
+                const originalSizeKB = this.originalFile.size / 1024;
+                
+                compressedSize.textContent = this.formatFileSize(blob.size);
+                compressedDimensions.textContent = `${width} × ${height}`;
+                compressedFormat.textContent = format.toUpperCase();
+                actualQuality.textContent = `${Math.round(quality * 100)}%`;
 
-                const originalSize = this.originalFile.size;
-                const reduction = ((originalSize - blob.size) / originalSize * 100).toFixed(1);
-                reductionPercent.textContent = `${reduction}% smaller`;
+                const reduction = ((originalSizeKB - compressedSizeKB) / originalSizeKB * 100);
+                const reductionElement = document.getElementById('reductionPercent');
+                
+                if (reduction > 0) {
+                    reductionElement.textContent = `${reduction.toFixed(1)}% smaller`;
+                    reductionElement.className = 'reduction';
+                    this.showSuccess(`Success! Image reduced by ${reduction.toFixed(1)}%`);
+                } else {
+                    reductionElement.textContent = `${Math.abs(reduction).toFixed(1)}% larger`;
+                    reductionElement.className = 'increase';
+                    this.showError('Image size increased. Try lower quality settings.');
+                }
 
-                // Store blob for download
-                this.resizedBlob = blob;
-
-                // Show results section
+                this.compressedBlob = blob;
                 resultsSection.style.display = 'block';
                 resultsSection.scrollIntoView({ behavior: 'smooth' });
             }
 
             downloadImage() {
-                if (!this.resizedBlob) return;
+                if (!this.compressedBlob) return;
 
                 const link = document.createElement('a');
                 const format = document.getElementById('format').value;
-                const outputFormat = format === 'original' ? this.getFileExtension(this.originalFile.name) : format;
                 
-                link.download = `resized-image.${outputFormat}`;
-                link.href = URL.createObjectURL(this.resizedBlob);
+                link.download = `compressed-image.${format}`;
+                link.href = URL.createObjectURL(this.compressedBlob);
                 link.click();
                 
                 URL.revokeObjectURL(link.href);
@@ -827,16 +1025,20 @@
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', () => {
-            new ImageResizer();
+            new CompleteImageResizer();
         });
 
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
     </script>
