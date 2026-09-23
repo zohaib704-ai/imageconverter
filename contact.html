@@ -1,0 +1,130 @@
+<!-- ============================================================
+     contact.html
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ImageResizer Pro</title>
+    <meta name="description" content="Get in touch with the ImageResizer Pro team. Questions, suggestions or support - we typically respond within 24-48 hours.">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='65' font-family='Arial' font-size='50' font-weight='bold' text-anchor='middle' fill='white'%3EIR%3C/text%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📷</text></svg>">
+    <meta name="theme-color" content="#2563eb">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>ImageResizer Pro</h1>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html" class="active">Contact</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Mobile Navigation -->
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html" class="active">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contact Page -->
+    <section id="contact">
+        <div class="content-page">
+            <div class="container">
+                <div class="content-section">
+                    <h2>Contact Us</h2>
+                    <p>We'd love to hear from you! Whether you have questions, suggestions, or need support, please don't hesitate to get in touch.</p>
+
+                    <div class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" placeholder="Enter your name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Enter your email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" placeholder="What is this regarding?">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="Tell us how we can help you..."></textarea>
+                        </div>
+
+                        <button class="submit-btn" onclick="handleContactSubmit()">Send Message</button>
+                    </div>
+
+                    <h3>Other Ways to Reach Us</h3>
+                    <p><strong>Email:</strong> support@imageresizerpro.com</p>
+                    <p><strong>Response Time:</strong> We typically respond within 24-48 hours</p>
+
+                    <h3>Frequently Asked Questions</h3>
+                    <p><strong>Q: Is this service really free?</strong><br>
+                    A: Yes, completely free! No hidden charges or premium tiers.</p>
+
+                    <p><strong>Q: Are my images stored on your servers?</strong><br>
+                    A: No, all processing happens in your browser. Your images never leave your device.</p>
+
+                    <p><strong>Q: What file formats do you support?</strong><br>
+                    A: We support JPG, PNG, GIF, and WEBP formats.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>ImageResizer Pro</h3>
+                    <p>Free online tools for image optimization and conversion.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ImageResizer Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+</body>
+</html>
