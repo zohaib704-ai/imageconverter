@@ -510,7 +510,20 @@ nav {
     color: var(--text-gray);
     line-height: 1.6;
 }
-
+/* Blog article list */
+.content-section ul li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+.content-section ul li a:hover {
+    text-decoration: underline;
+}
+.content-section ol li {
+    margin-bottom: 0.8rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+}
 /* ---------------- Contact Form ---------------- */
 .contact-form {
     max-width: 600px;
