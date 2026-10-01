@@ -962,3 +962,287 @@ footer {
     .editor-canvas-wrap { min-height: 260px; }
     #editCanvas { max-height: 400px; }
 }
+
+/* ============================================================
+   Homepage rebuild — sections
+   ============================================================ */
+
+/* Hero (home variant) */
+.hero--home {
+    padding: 100px 0 110px;
+    text-align: center;
+}
+.hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: var(--r-full);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(8px);
+}
+.hero--home h1 {
+    font-size: clamp(2rem, 4.8vw, 3.4rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+}
+.hero-actions {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+.hero-btn {
+    padding: 14px 28px;
+    border-radius: var(--r-md);
+    font-weight: 600;
+    font-family: inherit;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    display: inline-block;
+}
+.hero-btn--primary {
+    background: #fff;
+    color: var(--primary-dark);
+    box-shadow: 0 12px 28px -8px rgba(0,0,0,0.35);
+}
+.hero-btn--primary:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -10px rgba(0,0,0,0.45); }
+.hero-btn--ghost {
+    background: rgba(255,255,255,0.14);
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    backdrop-filter: blur(8px);
+}
+.hero-btn--ghost:hover { background: rgba(255,255,255,0.24); transform: translateY(-2px); }
+
+/* Primary tools (4 big cards) */
+.primary-tools {
+    padding: 80px 0 60px;
+    background: var(--bg);
+}
+.primary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.4rem;
+}
+.primary-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 2rem 1.7rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.28s ease;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+}
+.primary-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: rgba(99,102,241,0.4);
+}
+.primary-icon {
+    width: 62px; height: 62px;
+    border-radius: var(--r-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.9rem;
+    color: #fff;
+    margin-bottom: 1.2rem;
+}
+.primary-card h3 { font-size: 1.15rem; margin-bottom: 0.55rem; font-weight: 700; }
+.primary-card p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.2rem; flex: 1; }
+.primary-cta { color: var(--primary-dark); font-weight: 600; font-size: 0.9rem; }
+
+/* Trust row */
+.trust-row {
+    padding: 60px 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.6rem;
+    text-align: center;
+}
+.trust-item { padding: 1rem; }
+.trust-icon { font-size: 2.2rem; display: block; margin-bottom: 0.6rem; }
+.trust-item h4 { font-size: 1.05rem; margin-bottom: 0.4rem; font-weight: 700; }
+.trust-item p { color: var(--text-muted); font-size: 0.9rem; }
+
+/* Compressor band */
+.hero--compressor {
+    padding: 80px 0 100px;
+    background: var(--gradient-hero);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+.hero--compressor::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(600px circle at 20% 30%, rgba(255,255,255,0.15), transparent 60%);
+    pointer-events: none;
+}
+.hero--compressor .container { position: relative; z-index: 1; }
+
+/* All tools grid */
+.all-tools { padding: 80px 0; background: var(--bg); }
+.all-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.3rem;
+}
+.tool-tile {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.6rem 1.4rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.25s ease;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+}
+.tool-tile:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(99,102,241,0.35);
+}
+.tile-icon {
+    width: 48px; height: 48px;
+    border-radius: var(--r-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+.tool-tile h3 { font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700; }
+.tool-tile p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.55; }
+
+/* How it works */
+.how-it-works {
+    padding: 80px 0;
+    background: var(--surface);
+}
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.6rem;
+    counter-reset: step;
+}
+.step-card {
+    background: var(--gradient-soft);
+    border: 1px solid rgba(99,102,241,0.18);
+    border-radius: var(--r-xl);
+    padding: 2rem 1.7rem;
+    text-align: center;
+    position: relative;
+}
+.step-number {
+    width: 52px; height: 52px;
+    background: var(--gradient-brand);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin: 0 auto 1.1rem;
+    box-shadow: var(--shadow-brand);
+}
+.step-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+.step-card p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; }
+
+/* FAQ */
+.faq-section {
+    padding: 80px 0;
+    background: var(--bg);
+}
+.faq-list {
+    max-width: 760px;
+    margin: 0 auto;
+}
+.faq-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    margin-bottom: 0.85rem;
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+.faq-item:hover { border-color: rgba(99,102,241,0.35); }
+.faq-question {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 1.15rem 1.4rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+.faq-toggle {
+    font-size: 1.4rem;
+    color: var(--primary);
+    font-weight: 700;
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+    line-height: 1;
+}
+.faq-item.open .faq-toggle { transform: rotate(45deg); }
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 1.4rem;
+}
+.faq-item.open .faq-answer {
+    max-height: 400px;
+    padding: 0 1.4rem 1.2rem;
+}
+.faq-answer p { color: var(--text-muted); line-height: 1.65; margin: 0; font-size: 0.95rem; }
+.faq-answer a { color: var(--primary-dark); font-weight: 500; }
+
+/* Final CTA band */
+.cta-band {
+    padding: 90px 0;
+    background: var(--gradient-hero);
+    color: #fff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.cta-band::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(600px circle at 80% 40%, rgba(236,72,153,0.3), transparent 60%);
+    pointer-events: none;
+}
+.cta-band .container { position: relative; z-index: 1; }
+.cta-band h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin-bottom: 0.8rem; letter-spacing: -0.03em; }
+.cta-band p { font-size: 1.05rem; opacity: 0.9; margin-bottom: 1rem; }
+
+/* Responsive tweaks for new sections */
+@media (max-width: 768px) {
+    .hero--home { padding: 70px 0 80px; }
+    .primary-tools, .all-tools, .how-it-works, .faq-section { padding: 60px 0; }
+    .trust-row { padding: 45px 0; }
+    .hero--compressor { padding: 60px 0 80px; }
+    .cta-band { padding: 70px 0; }
+}
