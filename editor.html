@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All-in-One Image Editor — Enhance, Filter, Add Text & Upscale</title>
+    <meta name="description" content="Free online image editor. Enhance photos, apply filters, add text, rotate, and upscale images — all in your browser, no signup.">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236366f1'/%3E%3Ctext x='50' y='65' font-family='Arial' font-size='50' font-weight='bold' text-anchor='middle' fill='white'%3EIR%3C/text%3E%3C/svg%3E">
+    <meta name="theme-color" content="#6366f1">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><h1>ImageResizer Pro</h1></div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="blog/index.html">Blog</a>
+                <a href="editor.html" class="active">Editor</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html">Home</a>
+                <a href="blog/index.html">Blog</a>
+                <a href="editor.html" class="active">Editor</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="editor-page">
+        <div class="container">
+
+            <div class="editor-header">
+                <h1>All-in-One Image Editor</h1>
+                <p>Enhance, filter, add text, rotate, and upscale — free, in your browser.</p>
+            </div>
+
+            <!-- Upload zone -->
+            <div class="editor-upload" id="editorUpload">
+                <div class="editor-upload-inner" onclick="document.getElementById('editorFileInput').click()">
+                    <span class="editor-upload-icon">🖼️</span>
+                    <h3>Upload an image to start editing</h3>
+                    <p>JPG, PNG, WEBP — up to 15MB</p>
+                    <button class="process-btn" style="max-width:220px;margin:1rem auto 0;">Choose Image</button>
+                </div>
+                <input type="file" id="editorFileInput" accept="image/*">
+            </div>
+
+            <div class="status-message error" id="editorError" style="display: none;"></div>
+
+            <!-- Workspace (hidden until upload) -->
+            <div class="editor-workspace" id="editorWorkspace" style="display: none;">
+
+                <div class="editor-grid">
+
+                    <!-- Canvas -->
+                    <div class="editor-canvas-wrap">
+                        <canvas id="editCanvas"></canvas>
+                    </div>
+
+                    <!-- Controls -->
+                    <aside class="editor-controls">
+
+                        <div class="editor-tabs" role="tablist">
+                            <button class="editor-tab active" data-tab="enhance">Enhance</button>
+                            <button class="editor-tab" data-tab="filters">Filters</button>
+                            <button class="editor-tab" data-tab="text">Text</button>
+                            <button class="editor-tab" data-tab="transform">Transform</button>
+                        </div>
+
+                        <!-- Enhance panel -->
+                        <div class="editor-panel active" data-panel="enhance">
+                            <div class="ctrl-group">
+                                <label>Brightness <span id="vBrightness">100%</span></label>
+                                <input type="range" id="brightness" min="0" max="200" value="100">
+                            </div>
+                            <div class="ctrl-group">
+                                <label>Contrast <span id="vContrast">100%</span></label>
+                                <input type="range" id="contrast" min="0" max="200" value="100">
+                            </div>
+                            <div class="ctrl-group">
+                                <label>Saturation <span id="vSaturate">100%</span></label>
+                                <input type="range" id="saturate" min="0" max="200" value="100">
+                            </div>
+                            <div class="ctrl-group">
+                                <label>Blur <span id="vBlur">0px</span></label>
+                                <input type="range" id="blur" min="0" max="10" value="0" step="0.5">
+                            </div>
+                            <button class="ghost-btn" id="autoEnhanceBtn">✨ Auto Enhance</button>
+                        </div>
+
+                        <!-- Filters panel -->
+                        <div class="editor-panel" data-panel="filters">
+                            <div class="filter-grid" id="filterGrid">
+                                <button class="filter-chip active" data-filter="none">Original</button>
+                                <button class="filter-chip" data-filter="grayscale(100%)">B&amp;W</button>
+                                <button class="filter-chip" data-filter="sepia(80%)">Sepia</button>
+                                <button class="filter-chip" data-filter="contrast(120%) saturate(140%)">Vivid</button>
+                                <button class="filter-chip" data-filter="hue-rotate(-15deg) saturate(90%)">Cool</button>
+                                <button class="filter-chip" data-filter="hue-rotate(15deg) saturate(120%) brightness(105%)">Warm</button>
+                                <button class="filter-chip" data-filter="contrast(90%) brightness(110%) saturate(80%)">Fade</button>
+                                <button class="filter-chip" data-filter="contrast(140%) brightness(90%) saturate(120%)">Dramatic</button>
+                            </div>
+                        </div>
+
+                        <!-- Text panel -->
+                        <div class="editor-panel" data-panel="text">
+                            <div class="ctrl-group">
+                                <label>Text</label>
+                                <input type="text" id="textInput" placeholder="Your caption…" maxlength="60">
+                            </div>
+                            <div class="ctrl-group">
+                                <label>Font</label>
+                                <select id="textFont">
+                                    <option value="Inter">Inter</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Impact">Impact</option>
+                                    <option value="Courier New">Courier</option>
+                                </select>
+                            </div>
+                            <div class="ctrl-group">
+                                <label>Size <span id="vTextSize">48px</span></label>
+                                <input type="range" id="textSize" min="12" max="200" value="48">
+                            </div>
+                            <div class="ctrl-group">
+                                <label>Color</label>
+                                <input type="color" id="textColor" value="#ffffff">
+                            </div>
+                            <div class="ctrl-group">
+                                <label>Horizontal <span id="vTextX">50%</span></label>
+                                <input type="range" id="textX" min="0" max="100" value="50">
+                            </div>
+                            <div class="ctrl-group">
+                                <label>Vertical <span id="vTextY">50%</span></label>
+                                <input type="range" id="textY" min="0" max="100" value="50">
+                            </div>
+                            <div class="ctrl-group check-inline">
+                                <input type="checkbox" id="textBold" checked>
+                                <label for="textBold">Bold</label>
+                            </div>
+                            <button class="ghost-btn" id="addTextBtn">➕ Add Text</button>
+                            <button class="ghost-btn danger" id="clearTextBtn">Remove All Text</button>
+                        </div>
+
+                        <!-- Transform panel -->
+                        <div class="editor-panel" data-panel="transform">
+                            <div class="ctrl-group">
+                                <label>Rotate</label>
+                                <div class="btn-row">
+                                    <button class="ghost-btn small" id="rotLBtn">↺ -90°</button>
+                                    <button class="ghost-btn small" id="rotRBtn">↻ +90°</button>
+                                </div>
+                            </div>
+                            <div class="ctrl-group">
+                                <label>Flip</label>
+                                <div class="btn-row">
+                                    <button class="ghost-btn small" id="flipHBtn">⇆ Horizontal</button>
+                                    <button class="ghost-btn small" id="flipVBtn">⇅ Vertical</button>
+                                </div>
+                            </div>
+                            <div class="ctrl-group">
+                                <label>Upscale (Grow)</label>
+                                <div class="btn-row">
+                                    <button class="ghost-btn small" data-scale="1">1×</button>
+                                    <button class="ghost-btn small" data-scale="2">2×</button>
+                                    <button class="ghost-btn small" data-scale="3">3×</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="editor-actions">
+                            <div class="ctrl-group">
+                                <label>Format</label>
+                                <select id="exportFormat">
+                                    <option value="image/jpeg">JPEG</option>
+                                    <option value="image/png">PNG</option>
+                                    <option value="image/webp">WEBP</option>
+                                </select>
+                            </div>
+                            <button class="process-btn" id="downloadEditBtn">⬇ Download Image</button>
+                            <button class="ghost-btn" id="resetEditBtn">Reset All</button>
+                        </div>
+
+                    </aside>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>ImageResizer Pro</h3>
+                    <p>Free online tools for image optimization and conversion.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="editor.html">Editor</a>
+                    <a href="blog/index.html">Blog</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ImageResizer Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+    <script src="js/editor.js" defer></script>
+</body>
+</html>
