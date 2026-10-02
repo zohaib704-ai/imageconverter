@@ -13,6 +13,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+    
     <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
 
     <link rel="stylesheet" href="css/style.css">
@@ -293,32 +296,26 @@
 
                 <!-- CROP tab -->
                 <div class="ed-tabpanel" data-panel="crop">
-                    <div class="ctrl-group">
-                        <label>Ratio</label>
-                        <select data-key="preset">
-                            <option value="">Free</option>
-                            <option value="1:1">1:1 Square</option>
-                            <option value="4:5">4:5 Portrait</option>
-                            <option value="4:3">4:3 Classic</option>
-                            <option value="16:9">16:9 Wide</option>
-                            <option value="9:16">9:16 Story</option>
-                        </select>
-                    </div>
-                    <div class="ed-row">
-                        <div class="ctrl-group">
-                            <label>Width</label>
-                            <input type="number" data-key="cw" placeholder="auto">
-                        </div>
-                        <div class="ctrl-group">
-                            <label>Height</label>
-                            <input type="number" data-key="ch" placeholder="auto">
-                        </div>
-                    </div>
-                        <button class="ed-magic" data-ed="apply-crop" style="margin-top:1rem;">
+    <p class="ed-hint">Drag the corners or edges to crop. Pinch to zoom on mobile.</p>
+    <div id="cropperContainer" style="max-height:400px; background:#000; border-radius:12px; overflow:hidden;">
+        <img id="cropperImage" src="" style="max-width:100%; display:block;">
+    </div>
+    <div class="ctrl-group" style="margin-top:1rem;">
+        <label>Ratio</label>
+        <select id="cropRatio">
+            <option value="NaN">Free</option>
+            <option value="1">1:1 Square</option>
+            <option value="0.8">4:5 Portrait</option>
+            <option value="1.333">4:3 Classic</option>
+            <option value="1.777">16:9 Wide</option>
+            <option value="0.5625">9:16 Story</option>
+        </select>
+    </div>
+    <button class="ed-magic" id="applyCropperBtn">
         <span>✂️ Apply Crop</span>
-        <small>Uses the ratio or size above</small>
+        <small>Commit the crop to the image</small>
     </button>
-                </div>
+</div>
 
                 <!-- TRANSFORM tab -->
                 <div class="ed-tabpanel" data-panel="transform">
