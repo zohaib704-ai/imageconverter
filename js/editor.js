@@ -443,4 +443,72 @@ document.addEventListener('DOMContentLoaded', () => {
         if (document.getElementById('cameraModal').classList.contains('active')) return closeCamera();
         if (document.getElementById('editorModal').classList.contains('active')) return closeEditor();
     });
+
+   /* ============================================================
+   SIMPLE CROP — works with existing inputs, no overlay needed
+   ============================================================ */
+function applySimpleCrop() {
+    if (!img) {
+        alert('Upload an image first.');
+        return;
+    }
+
+    const preset = document.querySelector('[data-key="preset"]')?.value || '';
+    const cwInput = document.querySelector('[data-key="cw"]');
+    const chInput = document.querySelector('[data-key="ch"]');
+
+    let targetW, targetH;
+
+    if (cwInput?.value && chInput?.value) {
+        targetW = parseInt(cwInput.value);
+        targetH = parseInt(chInput.value);
+    } else if (preset) {
+        const [a, b] = preset.split(':').map(Number);
+        const ratio = a / b;
+        if (img.width / img.height > ratio) {
+            targetH = img.height;
+            targetW = Math.round(targetH * ratio);
+        } else {
+            targetW = img.width;
+            targetH = Math.round(targetW / ratio);
+        }
+    } else {
+        alert('Choose a ratio OR enter width & height.');
+        return;
+    }
+
+    // Center-crop the image to targetW × targetH
+    const srcX = Math.max(0, Math.round((img.width - targetW) / 2));
+    const srcY = Math.max(0, Math.round((img.height - targetH) / 2));
+    const finalW = Math.min(targetW, img.width);
+    const finalH = Math.min(targetH, img.height);
+
+    const tmp = document.createElement('canvas');
+    tmp.width = finalW;
+    tmp.height = finalH;
+    tmp.getContext('2d').drawImage(img, srcX, srcY, finalW, finalH, 0, 0, finalW, finalH);
+
+    const newImg = new Image();
+    newImg.onload = () => {
+        img = newImg;
+        state.cw = null;
+        state.ch = null;
+        state.preset = '';
+        if (cwInput) cwInput.value = '';
+        if (chInput) chInput.value = '';
+        const presetSel = document.querySelector('[data-key="preset"]');
+        if (presetSel) presetSel.value = '';
+        render();
+        alert('✅ Cropped to ' + finalW + ' × ' + finalH);
+    };
+    newImg.src = tmp.toDataURL('image/png');
+}
+
+// Hook the button (works whether class is .ed-magic or any button with data-ed="apply-crop")
+document.addEventListener('click', e => {
+    if (e.target.closest('[data-ed="apply-crop"]')) {
+        e.preventDefault();
+        applySimpleCrop();
+    }
+});
 });
