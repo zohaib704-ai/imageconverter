@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImageResizer Pro — Free Image Editor, Compressor & Enhancer</title>
-    <meta name="description" content="Free online image editor. Compress, enhance, clear, crop, rotate, filter, and add text to photos — right in your browser. No signup.">
+    <title>ImageResizer Pro — Free Image Editor, Compressor, Enhancer & OCR</title>
+    <meta name="description" content="Free online image tools: compress, enhance, clear, crop, filter, add text, upscale, camera with zoom, and read text from images (OCR). No signup.">
     <meta name="theme-color" content="#6366f1">
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236366f1'/%3E%3Ctext x='50' y='65' font-family='Arial' font-size='50' font-weight='bold' text-anchor='middle' fill='white'%3EIR%3C/text%3E%3C/svg%3E">
@@ -13,15 +13,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+    <!-- Cropper.js — gallery-style crop -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
-    
-    <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
+
+    <!-- Tesseract.js — free OCR (read text from images) -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+    <!-- Cropper.js — gallery-style crop -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
     <header>
         <nav>
             <div class="logo"><a href="index.html"><h1>ImageResizer Pro</h1></a></div>
@@ -48,16 +55,15 @@
     </header>
 
     <!-- ============================================================
-         HERO — big, colorful, two giant buttons
+         HERO — big colorful, two mega buttons
          ============================================================ -->
     <section class="mega-hero">
         <div class="mega-hero-bg"></div>
         <div class="container mega-hero-inner">
-            <span class="mega-badge">✨ Free forever · No signup · 100% private</span>
+            <span class="mega-badge">✨ 10 free tools · No signup · 100% private</span>
             <h1>Edit any photo.<br><span class="grad-text">Right in your browser.</span></h1>
-            <p>Compress, enhance, clear, crop, rotate, filter, and add text — all in one place. Your photos never leave your device.</p>
+            <p>Compress, enhance, clear, crop, rotate, filter, add text, upscale, and read text from images — all in one place. Your photos never leave your device.</p>
 
-            <!-- Two BIG buttons -->
             <div class="mega-actions">
                 <button class="mega-btn mega-btn--camera" id="heroCameraBtn">
                     <span class="mega-btn-icon">📷</span>
@@ -80,12 +86,12 @@
     </section>
 
     <!-- ============================================================
-         SHOWCASE — what you can do (visual, informative)
+         SHOWCASE — feature cards
          ============================================================ -->
     <section class="showcase">
         <div class="container">
             <h2 class="section-title">Everything you need in one editor</h2>
-            <p class="section-subtitle">Click any card to open the editor — every tool lives inside.</p>
+            <p class="section-subtitle">Click any card to start. All tools live inside the same editor.</p>
 
             <div class="showcase-grid">
 
@@ -103,16 +109,10 @@
                     <span class="show-cta">Open →</span>
                 </button>
 
-                <button class="launch-card" data-tool="ocr">
-    <div class="launch-icon grad-3">🔍</div>
-    <h3>Read Text (OCR)</h3>
-    <p>Extract text from photos and translate it.</p>
-</button>
-
                 <button class="show-card" data-open="editor">
                     <div class="show-icon grad-4">✂️</div>
                     <h3>Crop &amp; Resize</h3>
-                    <p>Preset ratios for Instagram, Stories, YouTube — or exact pixels.</p>
+                    <p>Drag corners and edges — just like your phone gallery. Preset ratios included.</p>
                     <span class="show-cta">Open →</span>
                 </button>
 
@@ -134,6 +134,13 @@
                     <div class="show-icon grad-8">📉</div>
                     <h3>Compress to KB</h3>
                     <p>Hit exact file sizes for faster websites and email attachments.</p>
+                    <span class="show-cta">Open →</span>
+                </button>
+
+                <button class="show-card" id="ocrCardBtn">
+                    <div class="show-icon grad-2">🔍</div>
+                    <h3>Read Text (OCR)</h3>
+                    <p>Extract words from any photo and translate them to 8 languages.</p>
                     <span class="show-cta">Open →</span>
                 </button>
 
@@ -174,6 +181,10 @@
                     <div class="faq-answer"><p>Clear applies auto-levels (fixes dull brightness), real sharpening (unsharp mask), and mild denoising. It makes blurry or faded photos visibly crisper — free, in your browser.</p></div>
                 </div>
                 <div class="faq-item">
+                    <button class="faq-question">How does Read Text (OCR) work? <span class="faq-toggle">+</span></button>
+                    <div class="faq-answer"><p>It reads text from any photo using Tesseract.js — a free, open-source engine that runs inside your browser. You can then translate the result to 8 languages.</p></div>
+                </div>
+                <div class="faq-item">
                     <button class="faq-question">Can it make a 100× blurry zoom crystal clear? <span class="faq-toggle">+</span></button>
                     <div class="faq-answer"><p>Not without AI. Tools like Remini use neural networks running on paid servers. Our free browser version sharpens and enhances — for true AI restoration you'd need a premium API. We're honest about that.</p></div>
                 </div>
@@ -181,31 +192,27 @@
                     <button class="faq-question">Which formats are supported? <span class="faq-toggle">+</span></button>
                     <div class="faq-answer"><p>Upload JPG, PNG, WEBP, GIF, or BMP. Export as JPEG, PNG, or WEBP.</p></div>
                 </div>
-                <div class="faq-item">
-                    <button class="faq-question">Does compressing reduce quality? <span class="faq-toggle">+</span></button>
-                    <div class="faq-answer"><p>Slightly, but at 60–80% quality the difference is usually invisible. That's the sweet spot for web images.</p></div>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-         CTA BAND
+         CTA
          ============================================================ -->
     <section class="cta-band">
         <div class="container">
             <h2>Start editing in seconds</h2>
             <p>No signup. No download. No limits.</p>
             <div class="hero-actions">
-    <button class="mega-btn mega-btn--camera" id="ctaCameraBtn">
-        <span class="mega-btn-icon">📷</span>
-        <span class="mega-btn-text"><strong>Open Camera</strong><small>1×–10× zoom</small></span>
-    </button>
-    <button class="mega-btn mega-btn--upload" id="ctaUploadBtn">
-        <span class="mega-btn-icon">🖼️</span>
-        <span class="mega-btn-text"><strong>Upload Photo</strong><small>JPG · PNG · WEBP</small></span>
-    </button>
-</div>
+                <button class="mega-btn mega-btn--camera" id="ctaCameraBtn">
+                    <span class="mega-btn-icon">📷</span>
+                    <span class="mega-btn-text"><strong>Open Camera</strong><small>1×–10× zoom</small></span>
+                </button>
+                <button class="mega-btn mega-btn--upload" id="ctaUploadBtn">
+                    <span class="mega-btn-icon">🖼️</span>
+                    <span class="mega-btn-text"><strong>Upload Photo</strong><small>JPG · PNG · WEBP</small></span>
+                </button>
+            </div>
         </div>
     </section>
 
@@ -215,23 +222,22 @@
     <div class="editor-modal" id="editorModal">
         <div class="editor-shell">
 
-            <!-- Top bar -->
             <div class="ed-topbar">
                 <button class="ed-icon-btn" data-ed="close" title="Close">✕</button>
                 <div class="ed-title" id="edTitle">Editor</div>
                 <div class="ed-topbar-right">
-                    <button class="ed-icon-btn" data-ed="undo" title="Undo">↺</button>
+                    <button class="ed-icon-btn" data-ed="undo" title="Reset">↺</button>
                     <button class="ed-pill-btn" data-ed="save">Save</button>
                 </div>
             </div>
 
-            <!-- Canvas stage -->
-            <div class="ed-stage">
-                <canvas id="edCanvas"></canvas>
+            <div class="ed-stage" id="edStage">
+                <div class="ed-canvas-wrap" id="edCanvasWrap">
+                    <canvas id="edCanvas"></canvas>
+                </div>
                 <button class="ed-compare" data-ed="compare">Hold to compare</button>
             </div>
 
-            <!-- Bottom controls (tabbed) -->
             <div class="ed-panel">
                 <div class="ed-tabs">
                     <button class="ed-tab active" data-tab="clear">✨ Clear</button>
@@ -243,7 +249,7 @@
                     <button class="ed-tab" data-tab="compress">📉 Compress</button>
                 </div>
 
-                <!-- CLEAR tab -->
+                <!-- CLEAR -->
                 <div class="ed-tabpanel active" data-panel="clear">
                     <p class="ed-hint">One tap to sharpen, denoise, and fix dull photos.</p>
                     <button class="ed-magic" data-ed="clear">
@@ -260,7 +266,7 @@
                     </div>
                 </div>
 
-                <!-- ENHANCE tab -->
+                <!-- ENHANCE -->
                 <div class="ed-tabpanel" data-panel="enhance">
                     <div class="ctrl-group">
                         <label>Brightness <span data-label="brightness">100%</span></label>
@@ -280,7 +286,7 @@
                     </div>
                 </div>
 
-                <!-- FILTERS tab -->
+                <!-- FILTERS -->
                 <div class="ed-tabpanel" data-panel="filters">
                     <div class="ed-filter-grid">
                         <button class="ed-filter active" data-filter="none">Original</button>
@@ -294,30 +300,30 @@
                     </div>
                 </div>
 
-                <!-- CROP tab -->
+                <!-- CROP (Cropper.js — gallery style) -->
                 <div class="ed-tabpanel" data-panel="crop">
-    <p class="ed-hint">Drag the corners or edges to crop. Pinch to zoom on mobile.</p>
-    <div id="cropperContainer" style="max-height:400px; background:#000; border-radius:12px; overflow:hidden;">
-        <img id="cropperImage" src="" style="max-width:100%; display:block;">
-    </div>
-    <div class="ctrl-group" style="margin-top:1rem;">
-        <label>Ratio</label>
-        <select id="cropRatio">
-            <option value="NaN">Free</option>
-            <option value="1">1:1 Square</option>
-            <option value="0.8">4:5 Portrait</option>
-            <option value="1.333">4:3 Classic</option>
-            <option value="1.777">16:9 Wide</option>
-            <option value="0.5625">9:16 Story</option>
-        </select>
-    </div>
-    <button class="ed-magic" id="applyCropperBtn">
-        <span>✂️ Apply Crop</span>
-        <small>Commit the crop to the image</small>
-    </button>
-</div>
+                    <p class="ed-hint">Drag the corners or edges to crop. Works exactly like your phone gallery.</p>
+                    <div id="cropperContainer" style="max-height:400px; background:#000; border-radius:12px; overflow:hidden; margin-bottom:1rem;">
+                        <img id="cropperImage" src="" style="max-width:100%; display:block;">
+                    </div>
+                    <div class="ctrl-group">
+                        <label>Ratio</label>
+                        <select id="cropRatio">
+                            <option value="NaN">Free</option>
+                            <option value="1">1:1 Square</option>
+                            <option value="0.8">4:5 Portrait</option>
+                            <option value="1.333">4:3 Classic</option>
+                            <option value="1.777">16:9 Wide</option>
+                            <option value="0.5625">9:16 Story</option>
+                        </select>
+                    </div>
+                    <button class="ed-magic" id="applyCropperBtn">
+                        <span>✂️ Apply Crop</span>
+                        <small>Commit the crop to the image</small>
+                    </button>
+                </div>
 
-                <!-- TRANSFORM tab -->
+                <!-- TRANSFORM -->
                 <div class="ed-tabpanel" data-panel="transform">
                     <div class="ed-btn-grid">
                         <button class="ed-ghost" data-ed="rotl">↺ Rotate Left</button>
@@ -331,7 +337,7 @@
                     </div>
                 </div>
 
-                <!-- TEXT tab -->
+                <!-- TEXT -->
                 <div class="ed-tabpanel" data-panel="text">
                     <div class="ctrl-group">
                         <label>Text</label>
@@ -359,7 +365,7 @@
                     </div>
                 </div>
 
-                <!-- COMPRESS tab -->
+                <!-- COMPRESS -->
                 <div class="ed-tabpanel" data-panel="compress">
                     <div class="ctrl-group">
                         <label>Quality <span data-label="quality">80%</span></label>
@@ -385,14 +391,14 @@
     </div>
 
     <!-- ============================================================
-         CAMERA MODAL
+         CAMERA MODAL — with 1×–10× zoom
          ============================================================ -->
     <div class="camera-modal" id="cameraModal">
         <div class="camera-shell">
             <div class="cam-topbar">
                 <button class="ed-icon-btn" id="camClose">✕</button>
                 <div class="cam-zoom-badge" id="camZoomBadge">1.0×</div>
-                <div style="width:36px;"></div>
+                <div style="width:42px;"></div>
             </div>
             <div class="cam-stage">
                 <video id="camVideo" autoplay playsinline></video>
@@ -411,6 +417,83 @@
         </div>
     </div>
 
+    <!-- ============================================================
+         OCR MODAL — read text from images + translate
+         ============================================================ -->
+    <div class="tool-modal" id="modal-ocr">
+        <div class="tool-modal-inner">
+            <div class="modal-head">
+                <h2>Read Text from Image (OCR)</h2>
+                <button class="modal-close" id="ocrClose">✕</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="drop-zone" id="ocrDrop">
+                    <span class="drop-icon">🔍</span>
+                    <p>Click to upload an image with text</p>
+                    <input type="file" id="ocrFile" accept="image/*" style="display:none;">
+                </div>
+
+                <div class="modal-editor" id="ocrEditor" style="display:none;">
+                    <div class="modal-canvas-wrap">
+                        <canvas class="modal-canvas" id="ocrCanvas"></canvas>
+                    </div>
+                    <div class="modal-controls">
+
+                        <div class="ctrl-group">
+                            <label>Language of text in image</label>
+                            <select id="ocrLang">
+                                <option value="eng">English</option>
+                                <option value="urd">Urdu</option>
+                                <option value="ara">Arabic</option>
+                                <option value="hin">Hindi</option>
+                                <option value="fra">French</option>
+                                <option value="spa">Spanish</option>
+                                <option value="deu">German</option>
+                                <option value="chi_sim">Chinese (Simplified)</option>
+                            </select>
+                        </div>
+
+                        <button class="ed-magic" id="ocrStartBtn">
+                            <span>🔍 Extract Text</span>
+                            <small>Reads the words from the image</small>
+                        </button>
+
+                        <div id="ocrProgress" style="display:none; text-align:center; color:#a5b4fc; font-size:0.9rem; margin-bottom:0.8rem;"></div>
+
+                        <div class="ctrl-group" id="ocrResultGroup" style="display:none;">
+                            <label>Extracted Text</label>
+                            <textarea id="ocrResult" rows="6" readonly
+                                style="width:100%; padding:10px; border-radius:8px; background:rgba(255,255,255,0.06); color:#e2e8f0; border:1.5px solid rgba(255,255,255,0.1); font-family:inherit; font-size:0.9rem;"></textarea>
+                        </div>
+
+                        <div class="ctrl-group" id="ocrTranslateGroup" style="display:none;">
+                            <label>Translate To</label>
+                            <select id="translateLang">
+                                <option value="">— Don't translate —</option>
+                                <option value="ur">Urdu</option>
+                                <option value="ar">Arabic</option>
+                                <option value="en">English</option>
+                                <option value="hi">Hindi</option>
+                                <option value="fr">French</option>
+                                <option value="es">Spanish</option>
+                                <option value="de">German</option>
+                                <option value="zh-CN">Chinese</option>
+                            </select>
+                        </div>
+
+                        <button class="ed-ghost" id="copyTextBtn" style="display:none;">📋 Copy Text</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -436,65 +519,11 @@
         </div>
     </footer>
 
+    <!-- ============================================================
+         SCRIPTS
+         ============================================================ -->
     <script src="js/main.js" defer></script>
     <script src="js/editor.js" defer></script>
-    <!-- OCR + Translate Modal -->
-<div class="tool-modal" id="modal-ocr">
-    <div class="tool-modal-inner">
-        <div class="modal-head">
-            <h2>Read Text from Image</h2>
-            <button class="modal-close" data-close>✕</button>
-        </div>
-        <div class="modal-body">
-            <div class="drop-zone" data-drop>
-                <span class="drop-icon">🔍</span>
-                <p>Upload an image with text</p>
-                <input type="file" class="modal-file" accept="image/*">
-            </div>
-            <div class="modal-editor" style="display:none;">
-                <div class="modal-canvas-wrap"><canvas class="modal-canvas"></canvas></div>
-                <div class="modal-controls">
-                    <div class="ctrl-group">
-                        <label>Language</label>
-                        <select id="ocrLang">
-                            <option value="eng">English</option>
-                            <option value="urd">Urdu</option>
-                            <option value="ara">Arabic</option>
-                            <option value="hin">Hindi</option>
-                            <option value="fra">French</option>
-                            <option value="spa">Spanish</option>
-                            <option value="deu">German</option>
-                            <option value="chi_sim">Chinese (Simplified)</option>
-                        </select>
-                    </div>
-                    <button class="ed-magic" id="ocrStartBtn">
-                        <span>🔍 Extract Text</span>
-                        <small>Reads text from the image</small>
-                    </button>
-                    <div id="ocrProgress" style="display:none; text-align:center; color:#a5b4fc; margin-top:10px;"></div>
-                    <div class="ctrl-group" id="ocrResultGroup" style="display:none;">
-                        <label>Extracted Text</label>
-                        <textarea id="ocrResult" rows="6" style="width:100%; padding:10px; border-radius:8px; background:rgba(255,255,255,0.06); color:#e2e8f0; border:1.5px solid rgba(255,255,255,0.1); font-family:inherit;" readonly></textarea>
-                    </div>
-                    <div class="ctrl-group" id="ocrTranslateGroup" style="display:none;">
-                        <label>Translate To</label>
-                        <select id="translateLang">
-                            <option value="">-- Don't translate --</option>
-                            <option value="ur">Urdu</option>
-                            <option value="ar">Arabic</option>
-                            <option value="en">English</option>
-                            <option value="hi">Hindi</option>
-                            <option value="fr">French</option>
-                            <option value="es">Spanish</option>
-                            <option value="de">German</option>
-                            <option value="zh-CN">Chinese</option>
-                        </select>
-                    </div>
-                    <button class="ed-ghost" id="copyTextBtn" style="display:none;">📋 Copy Text</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <script src="js/ocr.js" defer></script>
 </body>
 </html>
