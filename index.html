@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImageResizer Pro — Free Image Compressor, Editor & Enhancer</title>
-    <meta name="description" content="Free online image tools. Compress to under 100KB, enhance photos, add text, apply filters, resize, and upscale — all in your browser. No signup required.">
-    <meta name="keywords" content="image compressor, image resizer, MB to KB converter, photo enhancer, add text to image, image editor, upscale image online free">
+    <title>ImageResizer Pro — Free Image Tools</title>
+    <meta name="description" content="Free online image tools: compress, enhance, crop, filter, add text, upscale. No signup. Works in your browser.">
+    <meta name="theme-color" content="#6366f1">
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236366f1'/%3E%3Ctext x='50' y='65' font-family='Arial' font-size='50' font-weight='bold' text-anchor='middle' fill='white'%3EIR%3C/text%3E%3C/svg%3E">
-    <meta name="theme-color" content="#6366f1">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,19 +15,25 @@
 
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="launcher-body">
 
-    <!-- ============================================================
-         Header
-         ============================================================ -->
     <header>
         <nav>
-            <div class="logo">
-                <a href="index.html" style="text-decoration:none;"><h1>ImageResizer Pro</h1></a>
-            </div>
-
+            <div class="logo"><a href="index.html" style="text-decoration:none;"><h1>ImageResizer Pro</h1></a></div>
             <div class="nav-links">
                 <a href="index.html" class="active">Home</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="editor.html">Editor</a>
+                <a href="blog/index.html">Blog</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html">Home</a>
+                <a href="gallery.html">Gallery</a>
                 <a href="editor.html">Editor</a>
                 <a href="blog/index.html">Blog</a>
                 <a href="about.html">About</a>
@@ -36,292 +41,81 @@
                 <a href="privacy.html">Privacy</a>
                 <a href="terms.html">Terms</a>
             </div>
-
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
-            </button>
-
-            <div class="mobile-menu" id="mobileMenu">
-                <a href="index.html" class="active">Home</a>
-                <a href="editor.html">Editor</a>
-                <a href="blog/index.html">Blog</a>
-                <a href="about.html">About Us</a>
-                <a href="contact.html">Contact</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-            </div>
         </nav>
     </header>
 
-    <!-- ============================================================
-         Hero
-         ============================================================ -->
-    <section class="hero hero--home">
+    <!-- Hero -->
+    <section class="launcher-hero">
         <div class="container">
-            <span class="hero-badge">✨ 6 tools in one place — completely free</span>
-            <h1>Compress, Edit &amp; Enhance<br>Images in Seconds</h1>
-            <p>Everything you need to optimize images for the web — resize, compress under 100KB, enhance, add text, apply filters, and upscale. All in your browser. No signup.</p>
-
-            <div class="hero-actions">
-                <a href="#tools" class="hero-btn hero-btn--primary">Explore Tools ↓</a>
-                <a href="editor.html" class="hero-btn hero-btn--ghost">Open Editor</a>
-            </div>
+            <span class="hero-badge">✨ 10 free tools · No signup · 100% private</span>
+            <h1>Pick a tool. Get it done.</h1>
+            <p>Every tool opens in its own focused panel — no scrolling, no clutter.</p>
         </div>
     </section>
 
-    <!-- ============================================================
-         Primary Tool Selector (4 large cards)
-         ============================================================ -->
-    <section class="primary-tools">
+    <!-- Tool launcher grid -->
+    <section class="launcher-section">
         <div class="container">
-            <div class="primary-grid">
+            <div class="launcher-grid">
 
-                <a href="#compressor" class="primary-card">
-                    <div class="primary-icon grad-1">📉</div>
-                    <h3>Compress to MB→KB</h3>
-                    <p>Hit exact file sizes for faster websites and email attachments.</p>
-                    <span class="primary-cta">Use Compressor →</span>
-                </a>
+                <button class="launch-card" data-tool="compress">
+                    <div class="launch-icon grad-1">📉</div>
+                    <h3>Compress to KB</h3>
+                    <p>Hit exact file sizes for web or email.</p>
+                </button>
 
-                <a href="editor.html" class="primary-card">
-                    <div class="primary-icon grad-5">✨</div>
+                <button class="launch-card" data-tool="enhance">
+                    <div class="launch-icon grad-5">✨</div>
                     <h3>Enhance &amp; Clear</h3>
-                    <p>Brighten dark photos, sharpen detail, and make dull images pop.</p>
-                    <span class="primary-cta">Enhance Photos →</span>
-                </a>
+                    <p>Brighten, sharpen, and auto-fix photos.</p>
+                </button>
 
-                <a href="editor.html#text" class="primary-card">
-                    <div class="primary-icon grad-6">🔤</div>
-                    <h3>Add Text to Image</h3>
-                    <p>Overlay captions, titles, or watermarks with full styling control.</p>
-                    <span class="primary-cta">Add Text →</span>
-                </a>
+                <button class="launch-card" data-tool="filters">
+                    <div class="launch-icon grad-3">🎨</div>
+                    <h3>Filters</h3>
+                    <p>8 one-tap looks: B&amp;W, vivid, fade, and more.</p>
+                </button>
 
-                <a href="editor.html#transform" class="primary-card">
-                    <div class="primary-icon grad-3">🔎</div>
-                    <h3>Upscale &amp; Resize</h3>
-                    <p>Enlarge small images 2× or 3×, or resize to exact dimensions.</p>
-                    <span class="primary-cta">Upscale Now →</span>
-                </a>
+                <button class="launch-card" data-tool="text">
+                    <div class="launch-icon grad-6">🔤</div>
+                    <h3>Add Text</h3>
+                    <p>Captions, titles, and watermarks.</p>
+                </button>
 
-            </div>
-        </div>
-    </section>
+                <button class="launch-card" data-tool="crop">
+                    <div class="launch-icon grad-4">✂️</div>
+                    <h3>Crop &amp; Resize</h3>
+                    <p>Exact dimensions or aspect ratios.</p>
+                </button>
 
-    <!-- ============================================================
-         Trust Badges
-         ============================================================ -->
-    <section class="trust-row">
-        <div class="container">
-            <div class="trust-grid">
-                <div class="trust-item">
-                    <span class="trust-icon">🆓</span>
-                    <h4>100% Free</h4>
-                    <p>No hidden fees, no subscription, no signup — ever.</p>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-icon">🔒</span>
-                    <h4>Private by Design</h4>
-                    <p>All processing happens in your browser. Images never leave your device.</p>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-icon">⚡</span>
-                    <h4>Instant Results</h4>
-                    <p>No uploads, no queues. Your images are processed in milliseconds.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         Compression Tool (the original, kept intact)
-         ============================================================ -->
-    <section id="compressor" class="hero--compressor">
-        <div class="container" style="text-align:center;">
-            <h2 class="section-title" style="color:#fff;margin-bottom:0.8rem;">Image Compressor &amp; MB to KB Converter</h2>
-            <p style="color:rgba(255,255,255,0.9);max-width:560px;margin:0 auto 2rem;">Upload an image or take a photo — then compress it to a target file size.</p>
-
-            <div class="upload-options">
-                <div class="upload-option" onclick="openCamera()">
-                    <span class="upload-icon">📷</span>
-                    <h3>Take Photo</h3>
-                    <p>Capture image directly from your camera</p>
-                </div>
-                <div class="upload-option" onclick="document.getElementById('fileInput').click()">
-                    <span class="upload-icon">🖼️</span>
-                    <h3>Upload Image</h3>
-                    <p>Choose from gallery or files</p>
-                </div>
-            </div>
-            <input type="file" id="fileInput" accept="image/*">
-        </div>
-    </section>
-
-    <div class="status-message error" id="errorMessage" style="display: none;"></div>
-    <div class="status-message success" id="successMessage" style="display: none;"></div>
-
-    <div class="preview-section" id="previewSection">
-        <div class="container">
-            <div class="preview-container">
-                <h2 class="section-title">Image Preview</h2>
-                <img id="imagePreview" class="image-preview" alt="Image preview">
-                <div class="image-info">
-                    <p>File Size: <span id="previewSize">-</span></p>
-                    <p>Dimensions: <span id="previewDimensions">-</span></p>
-                    <p>Format: <span id="previewFormat">-</span></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="loading" id="loading">
-        <p>Processing your image...</p>
-        <div class="progress-bar">
-            <div class="progress" id="progress"></div>
-        </div>
-    </div>
-
-    <section class="tools-section" id="toolsSection">
-        <div class="container">
-            <h2 class="section-title">Compression Settings</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <h3>Quality &amp; Size</h3>
-                    <div class="form-group">
-                        <label for="quality">Quality: <span id="qualityValue">80%</span></label>
-                        <input type="range" id="quality" min="10" max="100" value="80">
-                        <small>Lower quality = smaller file size</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="maxSize">Max Size: <span id="maxSizeValue">500 KB</span></label>
-                        <input type="range" id="maxSize" min="50" max="2000" value="500">
-                        <small>Target maximum file size</small>
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <h3>Dimensions</h3>
-                    <div class="form-group">
-                        <label for="width">Width (px):</label>
-                        <input type="number" id="width" placeholder="Auto">
-                    </div>
-                    <div class="form-group">
-                        <label for="height">Height (px):</label>
-                        <input type="number" id="height" placeholder="Auto">
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="maintainAspect" checked>
-                            <label for="maintainAspect">Maintain Aspect Ratio</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <h3>Output Settings</h3>
-                    <div class="form-group">
-                        <label for="format">Output Format:</label>
-                        <select id="format">
-                            <option value="jpeg">JPEG (Best compression)</option>
-                            <option value="webp">WEBP (Modern format)</option>
-                            <option value="png">PNG (Lossless)</option>
-                        </select>
-                    </div>
-                    <button class="process-btn" id="processBtn" disabled>
-                        Compress Image
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="results-section" id="resultsSection">
-        <div class="container">
-            <h2 class="section-title">Compression Results</h2>
-            <div class="results-grid">
-                <div class="result-card">
-                    <h3>Original Image</h3>
-                    <img id="originalImage" class="result-image" alt="Original image">
-                    <div class="result-info">
-                        <p>Size: <span id="originalSize">-</span></p>
-                        <p>Dimensions: <span id="originalDimensions">-</span></p>
-                        <p>Format: <span id="originalFormat">-</span></p>
-                    </div>
-                </div>
-
-                <div class="result-card">
-                    <h3>Compressed Image</h3>
-                    <img id="compressedImage" class="result-image" alt="Compressed image">
-                    <div class="result-info">
-                        <p>Size: <span id="compressedSize">-</span></p>
-                        <p>Dimensions: <span id="compressedDimensions">-</span></p>
-                        <p>Format: <span id="compressedFormat">-</span></p>
-                        <p>Reduction: <span id="reductionPercent">-</span></p>
-                    </div>
-                    <button class="download-btn" id="downloadBtn">
-                        Download Compressed Image
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         All Tools Grid
-         ============================================================ -->
-    <section class="all-tools" id="tools">
-        <div class="container">
-            <h2 class="section-title">All Free Image Tools</h2>
-            <p class="section-subtitle">Every tool you need — no signup, no watermarks, no limits.</p>
-
-            <div class="all-tools-grid">
-
-                <a href="#compressor" class="tool-tile">
-                    <div class="tile-icon grad-1">📉</div>
-                    <h3>Image Compressor</h3>
-                    <p>Reduce file size to a target KB without losing visible quality.</p>
-                </a>
-
-                <a href="#compressor" class="tool-tile">
-                    <div class="tile-icon grad-2">📐</div>
-                    <h3>Resize Image</h3>
-                    <p>Change width and height to exact pixels or percentage.</p>
-                </a>
-
-                <a href="editor.html#filters" class="tool-tile">
-                    <div class="tile-icon grad-3">🎨</div>
-                    <h3>Apply Filters</h3>
-                    <p>8 one-click presets: B&amp;W, sepia, vivid, fade, dramatic, and more.</p>
-                </a>
-
-                <a href="editor.html" class="tool-tile">
-                    <div class="tile-icon grad-4">✨</div>
-                    <h3>Enhance / Clear</h3>
-                    <p>Brightness, contrast, saturation, and blur — plus Auto Enhance.</p>
-                </a>
-
-                <a href="editor.html#text" class="tool-tile">
-                    <div class="tile-icon grad-5">🔤</div>
-                    <h3>Add Text / Watermark</h3>
-                    <p>Overlay captions with custom font, size, color, and position.</p>
-                </a>
-
-                <a href="editor.html#transform" class="tool-tile">
-                    <div class="tile-icon grad-6">🔄</div>
+                <button class="launch-card" data-tool="transform">
+                    <div class="launch-icon grad-7">🔄</div>
                     <h3>Rotate &amp; Flip</h3>
-                    <p>Rotate 90° at a time or flip horizontally and vertically.</p>
+                    <p>Turn or mirror images in one click.</p>
+                </button>
+
+                <button class="launch-card" data-tool="upscale">
+                    <div class="launch-icon grad-8">🔎</div>
+                    <h3>Upscale 2×–3×</h3>
+                    <p>Enlarge small images smoothly.</p>
+                </button>
+
+                <button class="launch-card" data-tool="camera">
+                    <div class="launch-icon grad-9">📷</div>
+                    <h3>Camera + Zoom</h3>
+                    <p>Shoot with 1×–10× zoom.</p>
+                </button>
+
+                <a href="gallery.html" class="launch-card">
+                    <div class="launch-icon grad-10">🖼️</div>
+                    <h3>My Gallery</h3>
+                    <p>View and re-edit your images.</p>
                 </a>
 
-                <a href="editor.html#transform" class="tool-tile">
-                    <div class="tile-icon grad-7">🔎</div>
-                    <h3>Upscale (Grow)</h3>
-                    <p>Enlarge images 2× or 3× with smooth high-quality scaling.</p>
-                </a>
-
-                <a href="#compressor" class="tool-tile">
-                    <div class="tile-icon grad-8">🔄</div>
-                    <h3>Format Converter</h3>
-                    <p>Convert between JPEG, PNG, and WebP instantly.</p>
+                <a href="editor.html" class="launch-card launch-card--wide">
+                    <div class="launch-icon grad-2">⚡</div>
+                    <h3>Pro Editor Workspace</h3>
+                    <p>All tools in one screen — sidebar, canvas, adjustments.</p>
                 </a>
 
             </div>
@@ -329,144 +123,328 @@
     </section>
 
     <!-- ============================================================
-         How It Works
+         MODALS — each tool opens in its own panel
          ============================================================ -->
-    <section class="how-it-works">
-        <div class="container">
-            <h2 class="section-title">How It Works</h2>
-            <p class="section-subtitle">Three simple steps. Zero signup. Zero cost.</p>
 
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Upload or Capture</h3>
-                    <p>Choose an image from your device or take a photo directly with your camera.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Edit &amp; Adjust</h3>
-                    <p>Compress, enhance, filter, add text, or resize — using any of our free tools.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Download Instantly</h3>
-                    <p>Save the finished image in JPEG, PNG, or WebP. It's ready to use anywhere.</p>
-                </div>
+    <!-- Compress Modal -->
+    <div class="tool-modal" id="modal-compress">
+        <div class="tool-modal-inner">
+            <div class="modal-head">
+                <h2>Compress Image</h2>
+                <button class="modal-close" data-close>✕</button>
             </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         FAQ
-         ============================================================ -->
-    <section class="faq-section">
-        <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-
-            <div class="faq-list">
-
-                <div class="faq-item">
-                    <button class="faq-question">Is ImageResizer Pro really free? <span class="faq-toggle">+</span></button>
-                    <div class="faq-answer">
-                        <p>Yes. Every tool on this site is completely free to use. No account, no credit card, no hidden limits.</p>
+            <div class="modal-body">
+                <div class="drop-zone" data-drop>
+                    <span class="drop-icon">🖼️</span>
+                    <p>Click or drop an image here</p>
+                    <input type="file" class="modal-file" accept="image/*">
+                </div>
+                <div class="modal-editor" style="display:none;">
+                    <div class="modal-canvas-wrap"><canvas class="modal-canvas"></canvas></div>
+                    <div class="modal-controls">
+                        <div class="ctrl-group">
+                            <label>Quality <span data-label="quality">80%</span></label>
+                            <input type="range" data-key="quality" min="10" max="100" value="80">
+                        </div>
+                        <div class="ctrl-group">
+                            <label>Max Size <span data-label="maxSize">500 KB</span></label>
+                            <input type="range" data-key="maxSize" min="20" max="2000" value="500">
+                        </div>
+                        <div class="ctrl-group">
+                            <label>Format</label>
+                            <select data-key="format">
+                                <option value="image/jpeg">JPEG</option>
+                                <option value="image/webp">WEBP</option>
+                                <option value="image/png">PNG</option>
+                            </select>
+                        </div>
+                        <button class="process-btn" data-action="compress">Compress</button>
+                        <button class="ghost-btn" data-action="download" style="display:none;">⬇ Download</button>
+                        <div class="modal-info" data-info></div>
                     </div>
                 </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">Are my images uploaded to a server? <span class="faq-toggle">+</span></button>
-                    <div class="faq-answer">
-                        <p>No. All image processing happens directly in your browser using JavaScript. Your images never leave your device.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">How do I compress an image to under 100KB? <span class="faq-toggle">+</span></button>
-                    <div class="faq-answer">
-                        <p>Upload your image to the compressor, set Max Size to 100 KB, adjust quality to around 60–70%, and click "Compress Image". The tool will output a file close to your target.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">Which image formats are supported? <span class="faq-toggle">+</span></button>
-                    <div class="faq-answer">
-                        <p>You can upload JPEG, PNG, WebP, GIF, and BMP. You can export as JPEG, PNG, or WebP for maximum compatibility.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">Can I add text or a watermark to my image? <span class="faq-toggle">+</span></button>
-                    <div class="faq-answer">
-                        <p>Yes — open the <a href="editor.html#text">Image Editor</a>, go to the Text tab, and customize the caption, font, size, and position.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">Does compressing reduce image quality? <span class="faq-toggle">+</span></button>
-                    <div class="faq-answer">
-                        <p>Slightly, but at 60–80% quality the difference is usually invisible to the human eye. For photos, this is the sweet spot between file size and quality.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         Final CTA
-         ============================================================ -->
-    <section class="cta-band">
-        <div class="container">
-            <h2>Ready to optimize your images?</h2>
-            <p>Start with any tool — no signup, no cost, no limits.</p>
-            <div class="hero-actions" style="justify-content:center;">
-                <a href="#compressor" class="hero-btn hero-btn--primary">Compress an Image</a>
-                <a href="editor.html" class="hero-btn hero-btn--ghost">Open the Editor</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-         Camera Modal
-         ============================================================ -->
-    <div class="camera-modal" id="cameraModal">
-        <div class="camera-container">
-            <h2>Take a Photo</h2>
-            <video id="cameraVideo" autoplay playsinline></video>
-            <canvas id="cameraCanvas" style="display: none;"></canvas>
-            <div class="camera-controls">
-                <button class="camera-btn capture-btn" onclick="capturePhoto()">Capture Photo</button>
-                <button class="camera-btn cancel-btn" onclick="closeCamera()">Cancel</button>
             </div>
         </div>
     </div>
 
-    <!-- ============================================================
-         Footer
-         ============================================================ -->
+    <!-- Enhance Modal -->
+    <div class="tool-modal" id="modal-enhance">
+        <div class="tool-modal-inner">
+            <div class="modal-head">
+                <h2>Enhance &amp; Clear</h2>
+                <button class="modal-close" data-close>✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="drop-zone" data-drop>
+                    <span class="drop-icon">🖼️</span>
+                    <p>Click or drop an image here</p>
+                    <input type="file" class="modal-file" accept="image/*">
+                </div>
+                <div class="modal-editor" style="display:none;">
+                    <div class="modal-canvas-wrap"><canvas class="modal-canvas"></canvas></div>
+                    <div class="modal-controls">
+                        <button class="ghost-btn" data-action="auto-enhance">✨ Auto Enhance</button>
+                        <div class="ctrl-group">
+                            <label>Brightness <span data-label="brightness">100%</span></label>
+                            <input type="range" data-key="brightness" min="0" max="200" value="100">
+                        </div>
+                        <div class="ctrl-group">
+                            <label>Contrast <span data-label="contrast">100%</span></label>
+                            <input type="range" data-key="contrast" min="0" max="200" value="100">
+                        </div>
+                        <div class="ctrl-group">
+                            <label>Saturation <span data-label="saturate">100%</span></label>
+                            <input type="range" data-key="saturate" min="0" max="200" value="100">
+                        </div>
+                        <div class="ctrl-group">
+                            <label>Sharpness <span data-label="sharpen">0</span></label>
+                            <input type="range" data-key="sharpen" min="0" max="5" value="0" step="0.5">
+                        </div>
+                        <button class="ghost-btn" data-action="download">⬇ Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters Modal -->
+    <div class="tool-modal" id="modal-filters">
+        <div class="tool-modal-inner">
+            <div class="modal-head">
+                <h2>Filters</h2>
+                <button class="modal-close" data-close>✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="drop-zone" data-drop>
+                    <span class="drop-icon">🎨</span>
+                    <p>Click or drop an image here</p>
+                    <input type="file" class="modal-file" accept="image/*">
+                </div>
+                <div class="modal-editor" style="display:none;">
+                    <div class="modal-canvas-wrap"><canvas class="modal-canvas"></canvas></div>
+                    <div class="modal-controls">
+                        <div class="filter-grid">
+                            <button class="filter-chip active" data-filter="none">Original</button>
+                            <button class="filter-chip" data-filter="grayscale(100%)">B&amp;W</button>
+                            <button class="filter-chip" data-filter="sepia(80%)">Sepia</button>
+                            <button class="filter-chip" data-filter="contrast(120%) saturate(140%)">Vivid</button>
+                            <button class="filter-chip" data-filter="hue-rotate(-15deg) saturate(90%)">Cool</button>
+                            <button class="filter-chip" data-filter="hue-rotate(15deg) saturate(120%) brightness(105%)">Warm</button>
+                            <button class="filter-chip" data-filter="contrast(90%) brightness(110%) saturate(80%)">Fade</button>
+                            <button class="filter-chip" data-filter="contrast(140%) brightness(90%) saturate(120%)">Dramatic</button>
+                        </div>
+                        <button class="ghost-btn" data-action="download">⬇ Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Text Modal -->
+    <div class="tool-modal" id="modal-text">
+        <div class="tool-modal-inner">
+            <div class="modal-head">
+                <h2>Add Text</h2>
+                <button class="modal-close" data-close>✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="drop-zone" data-drop>
+                    <span class="drop-icon">🔤</span>
+                    <p>Click or drop an image here</p>
+                    <input type="file" class="modal-file" accept="image/*">
+                </div>
+                <div class="modal-editor" style="display:none;">
+                    <div class="modal-canvas-wrap"><canvas class="modal-canvas"></canvas></div>
+                    <div class="modal-controls">
+                        <div class="ctrl-group">
+                            <label>Text</label>
+                            <input type="text" data-key="text" placeholder="Your caption…" maxlength="60">
+                        </div>
+                        <div class="ctrl-group">
+                            <label>Font</label>
+                            <select data-key="font">
+                                <option>Inter</option><option>Georgia</option>
+                                <option>Impact</option><option>Courier New</option>
+                            </select>
+                        </div>
+                        <div class="ctrl-group">
+                            <label>Size <span data-label="size">48px</span></label>
+                            <input type="range" data-key="size" min="12" max="200" value="48">
+                        </div>
+                        <div class="ctrl-group">
+                            <label>Color</label>
+                            <input type="color" data-key="color" value="#ffffff">
+                        </div>
+                        <div class="ctrl-group">
+                            <label>Position X <span data-label="x">50%</span></label>
+                            <input type="range" data-key="x" min="0" max="100" value="50">
+                        </div>
+                        <div class="ctrl-group">
+                            <label>Position Y <span data-label="y">85%</span></label>
+                            <input type="range" data-key="y" min="0" max="100" value="85">
+                        </div>
+                        <button class="ghost-btn" data-action="download">⬇ Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Crop Modal -->
+    <div class="tool-modal" id="modal-crop">
+        <div class="tool-modal-inner">
+            <div class="modal-head">
+                <h2>Crop &amp; Resize</h2>
+                <button class="modal-close" data-close>✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="drop-zone" data-drop>
+                    <span class="drop-icon">✂️</span>
+                    <p>Click or drop an image here</p>
+                    <input type="file" class="modal-file" accept="image/*">
+                </div>
+                <div class="modal-editor" style="display:none;">
+                    <div class="modal-canvas-wrap"><canvas class="modal-canvas"></canvas></div>
+                    <div class="modal-controls">
+                        <div class="ctrl-group">
+                            <label>Preset</label>
+                            <select data-key="preset">
+                                <option value="">Custom</option>
+                                <option value="1:1">1:1 Square</option>
+                                <option value="4:3">4:3 Standard</option>
+                                <option value="16:9">16:9 Widescreen</option>
+                                <option value="3:4">3:4 Portrait</option>
+                                <option value="9:16">9:16 Story</option>
+                            </select>
+                        </div>
+                        <div class="ctrl-group">
+                            <label>Width (px)</label>
+                            <input type="number" data-key="cw" placeholder="Auto">
+                        </div>
+                        <div class="ctrl-group">
+                            <label>Height (px)</label>
+                            <input type="number" data-key="ch" placeholder="Auto">
+                        </div>
+                        <button class="ghost-btn" data-action="download">⬇ Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rotate Modal -->
+    <div class="tool-modal" id="modal-transform">
+        <div class="tool-modal-inner">
+            <div class="modal-head">
+                <h2>Rotate &amp; Flip</h2>
+                <button class="modal-close" data-close>✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="drop-zone" data-drop>
+                    <span class="drop-icon">🔄</span>
+                    <p>Click or drop an image here</p>
+                    <input type="file" class="modal-file" accept="image/*">
+                </div>
+                <div class="modal-editor" style="display:none;">
+                    <div class="modal-canvas-wrap"><canvas class="modal-canvas"></canvas></div>
+                    <div class="modal-controls">
+                        <div class="btn-row">
+                            <button class="ghost-btn small" data-action="rotl">↺ -90°</button>
+                            <button class="ghost-btn small" data-action="rotr">↻ +90°</button>
+                        </div>
+                        <div class="btn-row">
+                            <button class="ghost-btn small" data-action="fliph">⇆ Flip H</button>
+                            <button class="ghost-btn small" data-action="flipv">⇅ Flip V</button>
+                        </div>
+                        <button class="ghost-btn" data-action="download">⬇ Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upscale Modal -->
+    <div class="tool-modal" id="modal-upscale">
+        <div class="tool-modal-inner">
+            <div class="modal-head">
+                <h2>Upscale Image</h2>
+                <button class="modal-close" data-close>✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="drop-zone" data-drop>
+                    <span class="drop-icon">🔎</span>
+                    <p>Click or drop an image here</p>
+                    <input type="file" class="modal-file" accept="image/*">
+                </div>
+                <div class="modal-editor" style="display:none;">
+                    <div class="modal-canvas-wrap"><canvas class="modal-canvas"></canvas></div>
+                    <div class="modal-controls">
+                        <div class="ctrl-group">
+                            <label>Scale</label>
+                            <div class="btn-row">
+                                <button class="ghost-btn small" data-scale="2">2×</button>
+                                <button class="ghost-btn small" data-scale="3">3×</button>
+                                <button class="ghost-btn small" data-scale="4">4×</button>
+                            </div>
+                        </div>
+                        <button class="ghost-btn" data-action="download">⬇ Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camera Modal -->
+    <div class="tool-modal" id="modal-camera">
+        <div class="tool-modal-inner">
+            <div class="modal-head">
+                <h2>Camera — Zoom 1× to 10×</h2>
+                <button class="modal-close" data-close>✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="camera-stage">
+                    <video class="camera-video" autoplay playsinline></video>
+                </div>
+                <div class="camera-zoom-row">
+                    <button class="zoom-pill" data-zoom="1">1×</button>
+                    <button class="zoom-pill" data-zoom="2">2×</button>
+                    <button class="zoom-pill" data-zoom="5">5×</button>
+                    <button class="zoom-pill" data-zoom="10">10×</button>
+                    <input type="range" class="zoom-slider" min="1" max="10" step="0.5" value="1">
+                    <span class="zoom-value">1.0×</span>
+                </div>
+                <div class="camera-actions">
+                    <button class="process-btn" data-action="shoot">📷 Capture</button>
+                    <button class="ghost-btn" data-action="download" style="display:none;">⬇ Download</button>
+                </div>
+                <canvas class="modal-canvas" style="display:none;"></canvas>
+                <div class="modal-info"></div>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
                     <h3>ImageResizer Pro</h3>
-                    <p>Free online tools for image compression, editing, and optimization.</p>
+                    <p>Free image tools for compression, editing, and optimization.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Tools</h4>
-                    <a href="#compressor">Compressor</a>
-                    <a href="editor.html">Image Editor</a>
-                    <a href="editor.html#text">Add Text</a>
-                    <a href="editor.html#transform">Upscale</a>
+                    <a href="editor.html">Editor</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="blog/index.html">Blog</a>
                 </div>
                 <div class="footer-links">
                     <h4>Site</h4>
-                    <a href="blog/index.html">Blog</a>
                     <a href="about.html">About</a>
                     <a href="contact.html">Contact</a>
                 </div>
                 <div class="footer-links">
                     <h4>Legal</h4>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -476,6 +454,6 @@
     </footer>
 
     <script src="js/main.js" defer></script>
-    <script src="js/resizer.js" defer></script>
+    <script src="js/tools.js" defer></script>
 </body>
 </html>
