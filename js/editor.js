@@ -511,4 +511,107 @@ document.addEventListener('click', e => {
         applySimpleCrop();
     }
 });
+
+/* ============================================================
+   OCR — Tesseract.js (free, browser-based)
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('modal-ocr');
+    if (!modal) return;
+
+    const drop = modal.querySelector('[data-drop]');
+    const fileInput = modal.querySelector('.modal-file');
+    const editor = modal.querySelector('.modal-editor');
+    let ocrImg = null;
+
+    // Upload handling
+    drop.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', e => {
+        if (!e.target.files[0]) return;
+        const reader = new FileReader();
+        reader.onload = ev => {
+            const img = new Image();
+            img.onload = () => {
+                ocrImg = img;
+                drop.style.display = 'none';
+                editor.style.display = 'grid';
+                const canvas = modal.querySelector('.modal-canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                canvas.getContext('2d').drawImage(img, 0, 0);
+            };
+            img.src = ev.target.result;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    });
+
+    // OCR start
+    document.getElementById('ocrStartBtn').addEventListener('click', async () => {
+        if (!ocrImg) return alert('Upload an image first.');
+        const lang = document.getElementById('ocrLang').value;
+        const progressEl = document.getElementById('ocrProgress');
+        progressEl.style.display = 'block';
+        progressEl.textContent = 'Loading OCR engine…';
+
+        try {
+            const worker = await Tesseract.createWorker(lang, 1, {
+                logger: m => {
+                    if (m.status === 'recognizing text') {
+                        progressEl.textContent = `Reading text… ${Math.round(m.progress * 100)}%`;
+                    }
+                }
+            });
+
+            const { data: { text } } = await worker.recognize(ocrImg);
+            await worker.terminate();
+
+            progressEl.style.display = 'none';
+            document.getElementById('ocrResultGroup').style.display = 'block';
+            document.getElementById('ocrTranslateGroup').style.display = 'block';
+            document.getElementById('copyTextBtn').style.display = 'block';
+            document.getElementById('ocrResult').value = text.trim() || '(No text found)';
+        } catch (err) {
+            progressEl.textContent = 'Error: ' + err.message;
+        }
+    });
+
+    // Translate (free — uses MyMemory API, no key needed)
+    document.getElementById('translateLang').addEventListener('change', async e => {
+        const targetLang = e.target.value;
+        const sourceText = document.getElementById('ocrResult').value;
+        if (!targetLang || !sourceText || sourceText === '(No text found)') return;
+
+        const progressEl = document.getElementById('ocrProgress');
+        progressEl.style.display = 'block';
+        progressEl.textContent = 'Translating…';
+
+        try {
+            const res = await fetch(
+                `https://api.mymemory.translated.net/get?q=${encodeURIComponent(sourceText)}&langpair=auto|${targetLang}`
+            );
+            const data = await res.json();
+            progressEl.style.display = 'none';
+            document.getElementById('ocrResult').value =
+                data.responseData.translatedText || '(Translation failed)';
+        } catch {
+            progressEl.textContent = 'Translation failed — check connection.';
+        }
+    });
+
+    // Copy button
+    document.getElementById('copyTextBtn').addEventListener('click', () => {
+        const text = document.getElementById('ocrResult').value;
+        navigator.clipboard.writeText(text).then(() => {
+            document.getElementById('copyTextBtn').textContent = '✅ Copied!';
+            setTimeout(() => document.getElementById('copyTextBtn').textContent = '📋 Copy Text', 2000);
+        });
+    });
+
+    // Wire the launcher card
+    const ocrCard = document.querySelector('[data-tool="ocr"]');
+    if (ocrCard) ocrCard.addEventListener('click', () => {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});   
 });
