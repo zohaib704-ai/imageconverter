@@ -13,6 +13,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+    <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -97,6 +99,12 @@
                     <p>8 one-tap looks: B&amp;W, sepia, vivid, warm, cool, fade, dramatic.</p>
                     <span class="show-cta">Open →</span>
                 </button>
+
+                <button class="launch-card" data-tool="ocr">
+    <div class="launch-icon grad-3">🔍</div>
+    <h3>Read Text (OCR)</h3>
+    <p>Extract text from photos and translate it.</p>
+</button>
 
                 <button class="show-card" data-open="editor">
                     <div class="show-icon grad-4">✂️</div>
@@ -433,5 +441,63 @@
 
     <script src="js/main.js" defer></script>
     <script src="js/editor.js" defer></script>
+    <!-- OCR + Translate Modal -->
+<div class="tool-modal" id="modal-ocr">
+    <div class="tool-modal-inner">
+        <div class="modal-head">
+            <h2>Read Text from Image</h2>
+            <button class="modal-close" data-close>✕</button>
+        </div>
+        <div class="modal-body">
+            <div class="drop-zone" data-drop>
+                <span class="drop-icon">🔍</span>
+                <p>Upload an image with text</p>
+                <input type="file" class="modal-file" accept="image/*">
+            </div>
+            <div class="modal-editor" style="display:none;">
+                <div class="modal-canvas-wrap"><canvas class="modal-canvas"></canvas></div>
+                <div class="modal-controls">
+                    <div class="ctrl-group">
+                        <label>Language</label>
+                        <select id="ocrLang">
+                            <option value="eng">English</option>
+                            <option value="urd">Urdu</option>
+                            <option value="ara">Arabic</option>
+                            <option value="hin">Hindi</option>
+                            <option value="fra">French</option>
+                            <option value="spa">Spanish</option>
+                            <option value="deu">German</option>
+                            <option value="chi_sim">Chinese (Simplified)</option>
+                        </select>
+                    </div>
+                    <button class="ed-magic" id="ocrStartBtn">
+                        <span>🔍 Extract Text</span>
+                        <small>Reads text from the image</small>
+                    </button>
+                    <div id="ocrProgress" style="display:none; text-align:center; color:#a5b4fc; margin-top:10px;"></div>
+                    <div class="ctrl-group" id="ocrResultGroup" style="display:none;">
+                        <label>Extracted Text</label>
+                        <textarea id="ocrResult" rows="6" style="width:100%; padding:10px; border-radius:8px; background:rgba(255,255,255,0.06); color:#e2e8f0; border:1.5px solid rgba(255,255,255,0.1); font-family:inherit;" readonly></textarea>
+                    </div>
+                    <div class="ctrl-group" id="ocrTranslateGroup" style="display:none;">
+                        <label>Translate To</label>
+                        <select id="translateLang">
+                            <option value="">-- Don't translate --</option>
+                            <option value="ur">Urdu</option>
+                            <option value="ar">Arabic</option>
+                            <option value="en">English</option>
+                            <option value="hi">Hindi</option>
+                            <option value="fr">French</option>
+                            <option value="es">Spanish</option>
+                            <option value="de">German</option>
+                            <option value="zh-CN">Chinese</option>
+                        </select>
+                    </div>
+                    <button class="ed-ghost" id="copyTextBtn" style="display:none;">📋 Copy Text</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
