@@ -1246,3 +1246,204 @@ footer {
     .hero--compressor { padding: 60px 0 80px; }
     .cta-band { padding: 70px 0; }
 }
+/* ============================================================
+   LAUNCHER HOMEPAGE
+   ============================================================ */
+.launcher-body { background: var(--bg); }
+
+.launcher-hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    background: var(--gradient-soft);
+    border-bottom: 1px solid var(--border);
+}
+.launcher-hero h1 {
+    font-size: clamp(2rem, 4.4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    margin: 1rem 0 0.8rem;
+    color: var(--text);
+}
+.launcher-hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 560px; margin: 0 auto; }
+.launcher-hero .hero-badge {
+    background: rgba(99,102,241,0.12);
+    border: 1px solid rgba(99,102,241,0.25);
+    color: var(--primary-dark);
+}
+
+.launcher-section { padding: 60px 0 100px; }
+.launcher-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem;
+}
+.launch-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.6rem 1.4rem;
+    text-align: left;
+    text-decoration: none;
+    color: var(--text);
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+}
+.launch-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl);
+    border-color: rgba(99,102,241,0.4);
+}
+.launch-card--wide { grid-column: span 2; }
+@media (max-width: 500px) { .launch-card--wide { grid-column: span 1; } }
+
+.launch-icon {
+    width: 52px; height: 52px;
+    border-radius: var(--r-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+.launch-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.35rem; }
+.launch-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; }
+
+/* ============================================================
+   MODAL SYSTEM
+   ============================================================ */
+.tool-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,23,42,0.72);
+    backdrop-filter: blur(6px);
+    z-index: 3000;
+    padding: 20px;
+    overflow-y: auto;
+    align-items: flex-start;
+    justify-content: center;
+}
+.tool-modal.active { display: flex; }
+
+.tool-modal-inner {
+    background: var(--surface);
+    border-radius: var(--r-xl);
+    max-width: 900px;
+    width: 100%;
+    margin: auto;
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+    animation: modalIn 0.25s ease;
+}
+@keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--gradient-soft);
+}
+.modal-head h2 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; }
+.modal-close {
+    width: 36px; height: 36px;
+    border: none;
+    background: rgba(15,23,42,0.06);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text);
+    transition: all 0.2s ease;
+}
+.modal-close:hover { background: rgba(239,68,68,0.15); color: var(--error); }
+
+.modal-body { padding: 1.5rem; }
+
+/* Drop zone */
+.drop-zone {
+    border: 2px dashed var(--border);
+    border-radius: var(--r-lg);
+    padding: 3rem 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: var(--bg);
+}
+.drop-zone:hover, .drop-zone.dragover {
+    border-color: var(--primary);
+    background: var(--gradient-soft);
+}
+.drop-icon { font-size: 2.6rem; display: block; margin-bottom: 0.8rem; }
+.drop-zone p { color: var(--text-muted); font-size: 0.95rem; }
+.modal-file { display: none; }
+
+/* Modal editor layout */
+.modal-editor { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.4rem; }
+@media (max-width: 720px) { .modal-editor { grid-template-columns: 1fr; } }
+
+.modal-canvas-wrap {
+    background: #0f172a;
+    border-radius: var(--r-md);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    overflow: hidden;
+}
+.modal-canvas { max-width: 100%; max-height: 500px; border-radius: var(--r-sm); display: block; }
+
+.modal-controls { display: flex; flex-direction: column; gap: 0.9rem; }
+.modal-info { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+/* Camera */
+.camera-stage {
+    background: #000;
+    border-radius: var(--r-md);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.camera-video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.15s ease; }
+
+.camera-zoom-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+.zoom-pill {
+    padding: 6px 14px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--r-full);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.82rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+}
+.zoom-pill.active { background: var(--gradient-brand); color: #fff; border-color: transparent; }
+.zoom-slider { flex: 1; min-width: 120px; max-width: 220px; accent-color: var(--primary); }
+.zoom-value { font-weight: 700; color: var(--primary-dark); font-size: 0.9rem; min-width: 42px; text-align: right; }
+
+.camera-actions { display: flex; gap: 0.6rem; justify-content: center; }
+
+/* Small ghost buttons used in modals */
+.ghost-btn.small { flex: 1; padding: 9px 6px; font-size: 0.82rem; margin-top: 0; }
+.btn-row { display: flex; gap: 0.5rem; }
+
+/* Filter chips already defined earlier; keep as is */
