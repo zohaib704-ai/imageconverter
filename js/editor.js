@@ -701,3 +701,80 @@ document.querySelectorAll('.ed-tab').forEach(tab => {
         }
     });
 });
+
+/* ============================================================
+   CROP — Cropper.js (gallery style)
+   ============================================================ */
+let cropperInstance = null;
+
+function initCropper() {
+    const imgEl = document.getElementById('cropperImage');
+    if (!imgEl || !window.img) return;
+
+    imgEl.src = img.src;
+
+    if (cropperInstance) {
+        cropperInstance.destroy();
+        cropperInstance = null;
+    }
+
+    imgEl.onload = () => {
+        cropperInstance = new Cropper(imgEl, {
+            viewMode: 1,
+            dragMode: 'move',
+            aspectRatio: NaN,
+            autoCropArea: 0.8,
+            responsive: true,
+            guides: true,
+            center: true,
+            highlight: false,
+            cropBoxMovable: true,
+            cropBoxResizable: true,
+            toggleDragModeOnDblclick: true,
+            background: true,
+            modal: true,
+        });
+    };
+
+    document.getElementById('cropRatio').onchange = function () {
+        if (!cropperInstance) return;
+        const val = parseFloat(this.value);
+        cropperInstance.setAspectRatio(isNaN(val) ? NaN : val);
+    };
+
+    document.getElementById('applyCropperBtn').onclick = () => {
+        if (!cropperInstance) return;
+        const cropped = cropperInstance.getCroppedCanvas({
+            maxWidth: 4096,
+            maxHeight: 4096,
+            imageSmoothingQuality: 'high'
+        });
+        if (!cropped) return;
+
+        cropped.toBlob(blob => {
+            const url = URL.createObjectURL(blob);
+            const newImg = new Image();
+            newImg.onload = () => {
+                img = newImg;
+                cropperInstance.destroy();
+                cropperInstance = null;
+                URL.revokeObjectURL(url);
+                render();
+                document.querySelector('.ed-tab[data-tab="clear"]').click();
+            };
+            newImg.src = url;
+        }, 'image/png');
+    };
+}
+
+// Hook the crop tab
+document.querySelectorAll('.ed-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        if (tab.dataset.tab === 'crop' && img) {
+            setTimeout(initCropper, 100);
+        } else if (cropperInstance) {
+            cropperInstance.destroy();
+            cropperInstance = null;
+        }
+    });
+});
