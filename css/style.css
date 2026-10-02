@@ -1300,3 +1300,60 @@ footer {
     .contact-form .form-group textarea { padding: 12px 14px; }
     .submit-btn { width: 100%; padding: 14px 24px; }
 }
+
+/* ============================================================
+   FIX: Hero + CTA button pairs — make them perfectly equal
+   ============================================================ */
+
+/* Both containers behave identically */
+.mega-actions,
+.hero-actions {
+    display: flex !important;
+    gap: 1rem;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    max-width: 760px;
+    margin: 2.5rem auto 0;
+}
+
+/* Force both buttons to the exact same width & height */
+.mega-actions > .mega-btn,
+.hero-actions > .mega-btn {
+    flex: 1 1 340px !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    width: auto !important;
+    min-height: 84px;
+    align-items: center;
+}
+
+/* Keep icon and text vertically centered the same way */
+.mega-actions > .mega-btn .mega-btn-icon,
+.hero-actions > .mega-btn .mega-btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    font-size: 1.9rem;
+    flex-shrink: 0;
+}
+
+.mega-actions > .mega-btn .mega-btn-text,
+.hero-actions > .mega-btn .mega-btn-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    flex: 1;
+}
+
+/* On mobile, stack them full-width (still equal) */
+@media (max-width: 720px) {
+    .mega-actions > .mega-btn,
+    .hero-actions > .mega-btn {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+    }
+}
