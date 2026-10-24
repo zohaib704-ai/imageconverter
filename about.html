@@ -1,117 +1,82 @@
-<!-- ============================================================
-     about.html
-     ============================================================ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - ImageResizer Pro</title>
-    <meta name="description" content="Learn about ImageResizer Pro - a free, browser-based image compression and resizing tool that keeps your images completely private.">
-
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%232563eb'/%3E%3Ctext x='50' y='65' font-family='Arial' font-size='50' font-weight='bold' text-anchor='middle' fill='white'%3EIR%3C/text%3E%3C/svg%3E">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📷</text></svg>">
-    <meta name="theme-color" content="#2563eb">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"> 
-
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — ImageResizer Pro</title>
+<meta name="description" content="Learn about ImageResizer Pro — free, private, browser-based image tools.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236366f1'/%3E%3Ctext x='50' y='65' font-family='Arial' font-size='50' font-weight='bold' text-anchor='middle' fill='white'%3EIR%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<header>
+<nav>
+<div class="logo"><a href="index.html"><h1>ImageResizer Pro</h1></a></div>
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="blog/index.html">Blog</a>
+<a href="about.html" class="active">About</a>
+<a href="contact.html">Contact</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</div>
+<button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+<div class="mobile-menu" id="mobileMenu">
+<a href="index.html">Home</a>
+<a href="blog/index.html">Blog</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="privacy.html">Privacy</a>
+<a href="terms.html">Terms</a>
+</div>
+</nav>
+</header>
 
-    <header>
-        <nav>
-            <div class="logo">
-                <h1>ImageResizer Pro</h1>
-            </div>
+<section class="content-page">
+<div class="container">
+<div class="content-section">
+<h1>About ImageResizer Pro</h1>
+<p><strong>ImageResizer Pro</strong> is a collection of free, browser-based image tools built for anyone who needs to compress, edit, enhance, or read text from photos — without signups, uploads, or limits.</p>
 
-            <!-- Desktop Navigation -->
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="blog/index.html">Blog</a>
-                <a href="about.html" class="active">About</a>
-                <a href="contact.html">Contact</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
-            </div>
+<h3>Why We Built This</h3>
+<p>Most online image tools make you wait for uploads, force you to create an account, or watermark your output. We wanted something different: a set of professional-grade tools that run entirely in your browser, respect your privacy, and never cost a cent.</p>
 
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+<h3>What You Can Do Here</h3>
+<ul>
+<li><strong>Compress images</strong> to a target file size (MB to KB) for faster websites and smaller email attachments.</li>
+<li><strong>Enhance &amp; Clear</strong> dull or blurry photos with auto-levels, real sharpening, and denoising.</li>
+<li><strong>Crop and resize</strong> with draggable corners — exactly like your phone's gallery editor.</li>
+<li><strong>Apply filters</strong>, rotate, flip, and upscale.</li>
+<li><strong>Add text</strong>, captions, and watermarks.</li>
+<li><strong>Read text from images (OCR)</strong> in 8 languages — and translate it instantly.</li>
+<li><strong>Take photos</strong> with a 1×–10× zoom camera, right in the browser.</li>
+</ul>
 
-            <!-- Mobile Navigation -->
-            <div class="mobile-menu" id="mobileMenu">
-                <a href="index.html">Home</a>
-                <a href="blog/index.html">Blog</a> 
-                <a href="about.html" class="active">About Us</a>
-                <a href="contact.html">Contact</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-            </div>
-        </nav>
-    </header>
+<h3>Our Privacy Promise</h3>
+<p>Every tool on this site runs 100% on your device using JavaScript and WebAssembly. Your photos are <strong>never uploaded to any server</strong>, never stored, and never seen by us. Close the tab and everything is gone.</p>
 
-    <!-- About Page -->
-    <section id="about">
-        <div class="content-page">
-            <div class="container">
-                <div class="content-section">
-                    <h2>About ImageResizer Pro</h2>
-                    <p>ImageResizer Pro is a free online tool designed to help users optimize their images for web use, social media, and digital content creation. Our mission is to provide a simple, fast, and reliable solution for image compression and resizing.</p>
+<h3>Free, Forever</h3>
+<p>There are no accounts, no paywalls, and no hidden fees. The site is supported by non-intrusive advertising. If you find these tools useful, sharing them with a friend is the best way to say thanks.</p>
 
-                    <h3>Our Story</h3>
-                    <p>Founded in 2024, ImageResizer Pro was created to address the growing need for efficient image optimization tools. With the increasing importance of web performance and user experience, we recognized that both individuals and businesses needed a straightforward way to reduce image file sizes without compromising quality.</p>
+<h3>Get in Touch</h3>
+<p>Have feedback, found a bug, or want to suggest a feature? <a href="contact.html">Send me a message</a> — I read every one.</p>
+</div>
+</div>
+</section>
 
-                    <h3>What We Offer</h3>
-                    <ul>
-                        <li><strong>Free Image Compression:</strong> Reduce file sizes from MB to KB without significant quality loss</li>
-                        <li><strong>Smart Resizing:</strong> Adjust image dimensions while maintaining aspect ratios</li>
-                        <li><strong>Format Conversion:</strong> Convert between JPG, PNG, and WEBP formats</li>
-                        <li><strong>Camera Capture:</strong> Take photos directly from your device camera</li>
-                        <li><strong>Browser-Based Processing:</strong> All work happens locally on your device for maximum privacy</li>
-                        <li><strong>No Registration Required:</strong> Use our tool immediately without creating an account</li>
-                    </ul>
-
-                    <h3>Our Technology</h3>
-                    <p>We leverage modern web technologies including HTML5 Canvas, WebRTC for camera access, and advanced compression algorithms to deliver fast, efficient image processing directly in your browser. This approach ensures your images never leave your computer, guaranteeing complete privacy and security.</p>
-
-                    <h3>Our Commitment</h3>
-                    <p>We are committed to maintaining ImageResizer Pro as a free service. We believe that essential web tools should be accessible to everyone, regardless of their budget or technical expertise.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <h3>ImageResizer Pro</h3>
-                    <p>Free online tools for image optimization and conversion.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="blog/index.html">Blog</a> 
-                    <a href="about.html">About</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Legal</h4>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 ImageResizer Pro. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="js/main.js" defer></script>
+<footer>
+<div class="container">
+<div class="footer-content">
+<div class="footer-logo"><h3>ImageResizer Pro</h3><p>Free image tools for compression, editing, and optimization.</p></div>
+<div class="footer-links"><h4>Site</h4><a href="blog/index.html">Blog</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+<div class="footer-links"><h4>Legal</h4><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+</div>
+<div class="footer-bottom"><p>&copy; 2026 ImageResizer Pro. All rights reserved.</p></div>
+</div>
+</footer>
+<script src="js/main.js" defer></script>
 </body>
 </html>
