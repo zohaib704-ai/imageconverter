@@ -1,93 +1,49 @@
-/* ============================================================
-   js/ocr.js — Read text from images + Translate
-   ============================================================ */
-document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('modal-ocr');
-    if (!modal) return;
+// main.js
+const fileInput = document.getElementById('fileInput');
+const uploadBtn = document.getElementById('uploadBtn');
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const imagePreview = document.getElementById('imagePreview');
+const toolTabs = document.getElementById('toolTabs');
+const toolPanel = document.getElementById('toolPanel');
 
-    const drop = document.getElementById('ocrDrop');
-    const fileInput = document.getElementById('ocrFile');
-    const editor = document.getElementById('ocrEditor');
-    const canvas = document.getElementById('ocrCanvas');
-    let ocrImg = null;
+let currentImage = null; // Image object
+let currentFile = null;
 
-    const openModal = () => { modal.classList.add('active'); document.body.style.overflow = 'hidden'; };
-    const closeModal = () => { modal.classList.remove('active'); document.body.style.overflow = ''; };
+uploadBtn.addEventListener('click', () => fileInput.click());
 
-    document.getElementById('ocrCardBtn')?.addEventListener('click', openModal);
-    document.getElementById('ocrClose')?.addEventListener('click', closeModal);
-    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-
-    drop?.addEventListener('click', () => fileInput.click());
-    fileInput?.addEventListener('change', e => {
-        if (!e.target.files[0]) return;
-        const reader = new FileReader();
-        reader.onload = ev => {
-            const img = new Image();
-            img.onload = () => {
-                ocrImg = img;
-                drop.style.display = 'none';
-                editor.style.display = 'grid';
-                canvas.width = img.width;
-                canvas.height = img.height;
-                canvas.getContext('2d').drawImage(img, 0, 0);
-            };
-            img.src = ev.target.result;
-        };
-        reader.readAsDataURL(e.target.files[0]);
-    });
-
-    document.getElementById('ocrStartBtn')?.addEventListener('click', async () => {
-        if (!ocrImg) return alert('Upload an image first.');
-        const lang = document.getElementById('ocrLang').value;
-        const progressEl = document.getElementById('ocrProgress');
-        progressEl.style.display = 'block';
-        progressEl.textContent = 'Loading OCR engine (first time ~10s)…';
-        try {
-            const worker = await Tesseract.createWorker(lang, 1, {
-                logger: m => {
-                    if (m.status === 'recognizing text') {
-                        progressEl.textContent = `Reading text… ${Math.round(m.progress * 100)}%`;
-                    }
-                }
-            });
-            const { data: { text } } = await worker.recognize(ocrImg);
-            await worker.terminate();
-            progressEl.style.display = 'none';
-            document.getElementById('ocrResultGroup').style.display = 'block';
-            document.getElementById('ocrTranslateGroup').style.display = 'block';
-            document.getElementById('copyTextBtn').style.display = 'block';
-            document.getElementById('ocrResult').value = text.trim() || '(No text found)';
-        } catch (err) {
-            progressEl.textContent = 'Error: ' + err.message;
-        }
-    });
-
-    document.getElementById('translateLang')?.addEventListener('change', async e => {
-        const target = e.target.value;
-        const src = document.getElementById('ocrResult').value;
-        if (!target || !src || src === '(No text found)') return;
-        const progressEl = document.getElementById('ocrProgress');
-        progressEl.style.display = 'block';
-        progressEl.textContent = 'Translating…';
-        try {
-            const res = await fetch(
-                `https://api.mymemory.translated.net/get?q=${encodeURIComponent(src.slice(0, 500))}&langpair=auto|${target}`
-            );
-            const data = await res.json();
-            progressEl.style.display = 'none';
-            document.getElementById('ocrResult').value = data.responseData?.translatedText || '(Translation failed)';
-        } catch {
-            progressEl.textContent = 'Translation failed — check connection.';
-        }
-    });
-
-    document.getElementById('copyTextBtn')?.addEventListener('click', () => {
-        const text = document.getElementById('ocrResult').value;
-        navigator.clipboard.writeText(text).then(() => {
-            const btn = document.getElementById('copyTextBtn');
-            btn.textContent = '✅ Copied!';
-            setTimeout(() => btn.textContent = '📋 Copy Text', 2000);
-        });
-    });
+fileInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  currentFile = file;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    const img = new Image();
+    img.onload = () => {
+      currentImage = img;
+      // Draw to canvas
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+      canvas.hidden = false;
+      imagePreview.hidden = true;
+      toolTabs.hidden = false;
+      // Notify other modules
+      window.dispatchEvent(new CustomEvent('imageLoaded', { detail: { img, canvas } }));
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
 });
+
+// Tool tab switching
+toolTabs.addEventListener('click', (e) => {
+  if (e.target.tagName !== 'BUTTON') return;
+  document.querySelectorAll('.tool-tabs button').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  const tool = e.target.dataset.tool;
+  window.dispatchEvent(new CustomEvent('toolSelected', { detail: { tool } }));
+});
+
+// Expose helpers globally for modules
+window.app = { canvas, ctx, getCurrentImage: () => currentImage, getCurrentFile: () => currentFile };
